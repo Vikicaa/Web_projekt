@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2023 at 09:40 PM
+-- Generation Time: Jun 23, 2023 at 05:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -132,11 +132,27 @@ CREATE TABLE `invited` (
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `user_name` varchar(255) NOT NULL,
-  `user_password` varchar(60) NOT NULL,
+  `user_password` varchar(255) NOT NULL,
   `user_email` varchar(255) NOT NULL,
-  `user_phone` varchar(20) NOT NULL,
-  `event_comment` varchar(255) DEFAULT NULL
+  `user_phone` int(11) NOT NULL,
+  `user_comment` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_name`, `user_password`, `user_email`, `user_phone`, `user_comment`) VALUES
+(1, 'asd123', '$2y$10$hokikCgJwcq2Ak8ctj8bcu/2mTBz/tRqv9DrXRvXMVaQpI1NtOucm', 'asd@asd.com', 2147483647, ''),
+(2, 'asd123', '$2y$10$JG0fYGOzV3tzUhQLe3GWZOdiVF/7ao4kNRGoLxsEiRf73C5fkqa0y', 'asd@asd.com', 2147483647, ''),
+(3, 'asd123', '$2y$10$ZhSItvXAznbWnSd0IN.s.ejD9aSOKmxoqm3hedT.YLlF84QFimav6', 'asd@asd.com', 2147483647, ''),
+(4, 'asd123', '$2y$10$J1MVDYHBFMeRkuLvXonlxOE20Nr4K6/Bp9x3MMmbFbM6N5uhNupN6', 'asd@asd.com', 2147483647, ''),
+(5, 'asd123', '$2y$10$VvVSbWqVVZiuW5Ygax9GcOLY1g6sCyJaawXCEuj8dzTQ/pnVsrAUq', 'asd@asd.com', 2147483647, ''),
+(6, 'asd123', '$2y$10$.EgkfjsVqXkZfxi/8ZG07eIEQUDJge8Z09i3rQzQXcAorYu40DfYm', 'asd@asd.com', 2147483647, ''),
+(7, 'asd123', '$2y$10$MpzlSsBWM3gTK6GRw1QyUOl6NuKzm4QDRyYuccgjWHPBqjgvt3ICu', 'asd@asd.com', 2147483647, ''),
+(8, 'asd123', '$2y$10$m6TvI0nmrNZ.N7DF.TZK8u3meKNaBSBdZqkrzirEt4gyB4SkDDfVi', 'asd@ssss.com', 2147483647, ''),
+(9, 'asd123', '$2y$10$3NrDBHNLb5Xc8/l0H7Gi4OTs5kNa4fz9ddE9QryImBzIYjON5LTxa', 'qweqwe@sd.com', 2147483647, ''),
+(10, 'mark', '$2y$10$qrMzg8fPK7RSrNr.rE3WYe8AMnc2fCiTFPr1wGtBqTRz0KhqE2Q9a', 'xcvb@gmail.com', 2147483647, '');
 
 --
 -- Indexes for dumped tables
@@ -191,6 +207,16 @@ ALTER TABLE `invited`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

@@ -1,39 +1,33 @@
 <?php
 
-session_start();
-
 include ("db_config.php");
+// Az admin által megadott adatok
+$admin_name = $_POST['admin_name'];
+$admin_password = $_POST['admin_password'];
 
-// Ellenőrizd az admin bejelentkezést
-if (isset($_POST['home_page'])) {
-    $admin_name = $_POST['admin_name'];
-    $admin_password = $_POST['admin_password'];
+global $connection;
 
-    // Ellenőrizd az admin felhasználónevet és jelszót az adatbázisban
-    $sql = "SELECT * FROM admin WHERE admin_name = '$admin_name'";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $hashedPassword = $row['admin_password'];
+// Ellenőrizze az admin adatokat az adatbázisban
+$sql = "SELECT * FROM admin WHERE admin_name = '$admin_name' AND admin_password = '$admin_password'";
+$result = $connection->query($sql);
 
-        // Ellenőrizd a jelszó helyességét
-        if (password_verify($admin_password, $hashedPassword)) {
-            // Admin bejelentkezés sikeres
-            $_SESSION['admin_loggedIn'] = true;
-            $_SESSION['admin_name'] = $admin_name;
+// Ellenőrizze, hogy van-e találat
+if ($result->num_rows > 0) {
+    // Az admin adatok helyesek, beléptetés
+    session_start();
+    $_SESSION['admin'] = true;
 
-            // További műveletek az admin bejelentkezés után
-
-            header("Location: events.php");
-            exit;
-        }
-    }
-
-    // Admin bejelentkezés sikertelen
-    header("Location: home_page.php?error=invalid_credentials");
-    exit;
+    // Átirányítás a főoldalra
+    header('Location: home_page.php');
+    exit();
+} else {
+    // Helytelen admin adatok
+    echo "Helytelen felhasználónév vagy jelszó!";
 }
 
+header('Location: home_page.php');
+exit();
 ?>
+
 
 

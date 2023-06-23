@@ -2,36 +2,34 @@
 
 include ("db_config.php");
 
-function registerUser($name, $password, $email, $phone) {
-    global $conn;
+$user_name = $_POST['user_name'];
+$user_password = $_POST['user_password'];
+$user_email = $_POST['user_email'];
+$user_phone = $_POST['user_phone'];
+    
+global $connection;
 
     // Ellenőrizd, hogy az e-mail cím már regisztrálva van-e
-    $sql = "SELECT * FROM users WHERE user_email = '$email'";
-    $result = $conn->query($sql);
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "This ($email) email address is considered valid.";
+    $sql = "SELECT * FROM users WHERE user_email = '$user_email'";
+    $result = $connection->query($sql);
+    if (strlen($user_password) < 8) {
+        echo "The password need to be minimum 8 character.";
     }
-    else{
-        echo "This ($email) email address is not valid.";
+    if (!preg_match("/[A-Z]/", $user_password)) {
+        echo "The password need to contain a capital letter.";
     }
     if ($result->num_rows > 0) {
-        return "This e-mail is already registrated!";
-    }
-    if (strlen($password) < 8) {
-        return "The password need to be minimum 8 character.";
-    }
-    if (!preg_match("/[A-Z]/", $password)) {
-        return "The password need to contain a capital letter.";
-    }
-    
-
-    // Hozd létre az új felhasználó rekordot az adatbázisban
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO users (user_name, user_password, user_email, user_phone) VALUES ('$name', '$hashedPassword', '$email',  '$phone')";
-    if ($conn->query($sql) === TRUE) {
-        return "Registration is succesfully!";
+    echo "This email is already registrated!";
     } else {
-        return "Something went wrong while registration: " . $conn->error;
+        $hashedPassword = password_hash($user_password, PASSWORD_DEFAULT);
+    $sql = "INSERT INTO users (user_name, user_password, user_email, user_phone) VALUES ('$user_name', '$hashedPassword', '$user_email',  '$user_phone')";
+    if ($connection->query($sql) === TRUE) {
+        echo "Registration is succesfully!";
+    } else {
+        echo "Something went wrong while registration: " . $connection->error;
     }
-}
+    }
+
+    header('Location: home_page.php');
+exit();
 ?>

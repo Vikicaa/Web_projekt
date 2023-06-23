@@ -44,10 +44,15 @@ function register() {
     var user_email = document.getElementById("user_email").value;
     var user_phone = document.getElementById("user_phone").value;
 
-    if(user_name === "" || user_password === "" || user_email === "" || user_phone === ""){
+    const form = document.querySelector('form');
+    const nameInput = form.querySelector('input[user_name="user_name"]');
+    const passwordInput = form.querySelector('input[user_password="user_password"]');
+
+
+    if(nameInput === "" || passwordInput === "" || user_email === "" || user_phone === ""){
         alert("Error: Please, fill all input!");
-      if (user_name === "") document.getElementById('user_name').style.border = "1px solid red";
-      if (user_password === "") document.getElementById('user_password').style.border = "1px solid red";
+      if (nameInput === "") document.getElementById('user_name').style.border = "1px solid red";
+      if (passwordInput === "") document.getElementById('user_password').style.border = "1px solid red";
       if (user_email === "") document.getElementById('user_email').style.border = "1px solid red";
       if (user_phone === "") document.getElementById('user_phone').style.border = "1px solid red";
       return false;

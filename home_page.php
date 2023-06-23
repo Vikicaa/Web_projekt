@@ -18,8 +18,8 @@
       <li><a href="home_page.php">Home Page</a></li>
       <li><a href="events.php">Events</a></li>
       <li><a href="about_us.php">About Us</a></li>
-      <li><a href="#" onclick="showLoginPopup()">Login</a></li>
-      <li><a href="#" onclick="showRegistrationPopup()">Register</a></li>
+      <li><a href="login.php">Login</a></li>
+      <li><a href="registration.php">Register</a></li>
     </ul>
   </nav>
 </header>
@@ -29,8 +29,8 @@
     <li><a href="home_page.php">Home Page</a></li>
     <li><a href="events.php">Events</a></li>
     <li><a href="about_us.php">About Us</a></li>
-    <li><a href="#" onclick="showLoginPopup()">Login</a></li>
-    <li><a href="#" onclick="showRegistrationPopup()">Register</a></li>
+    <li><a href="login.php">Login</a></li>
+    <li><a href="register.php">Register</a></li>
   </ul>
 </nav>
 
@@ -65,54 +65,23 @@
             <h2>Login</h2>
             <form>
                 <label for="user_name">Username:</label>
-                <input type="name" id="user_name" required>
+                <input type="name" id="user_name" required><br>
 
                 <label for="user_password">Password:</label>
-                <input type="password" id="user_password" required>
+                <input type="password" id="user_password" required><br><br>
 
-                <button type="button" onclick="login()">Login</button>
+                <button type="submit" onclick="login()">Login</button>
                 <button type="button" onclick="hideLoginPopup()">Close</button>
 				<button type="button" onclick="showAdminPopup(), hideLoginPopup()">Admin</button>
             </form>
         </div>
     </div>
 
-	<div id="registrationPopup" class="popup" action="register.php">
-        <div class="popup-content">
-            <h2>Register</h2>
-            <form>
-                <label for="user_name">Username:</label>
-                <input type="text" id="user_name" name="user_name" required>
-
-                <label for="user_password">Password:</label>
-                <input type="password" id="user_password" name="user_password" required><br>
-
-				<label for="user_email">Email:</label>
-                <input type="email" id="user_email" name="user_email" required><br>
-
-				<label for="user_phone">Phone:</label>
-                <input type="number" id="user_phone" name="user_phone" required>
-
-                <button type="button" onclick="register()">Register</button>
-                <button type="button" onclick="hideRegistrationPopup()">Close</button>
-            </form>
-        </div>
-    </div>
 
 	<div id="adminPopup" class="popup" action="admin.php">
         <div class="popup-content">
             <h2>Admin</h2>
-            <form>
-                <label for="admin_name">Username:</label>
-                <input type="text" id="admin_name" required>
-
-                <label for="admin_password">Password:</label>
-                <input type="password" id="admin_password" required>
-
-                <button type="button" onclick="admin()">Log In</button>
-                <button type="button" onclick="hideAdminPopup()">Close</button>
-				
-            </form>
+            
         </div>
     </div>
 

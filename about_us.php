@@ -6,13 +6,17 @@
 </head>
 <body>
 	<header>
-		<h1>Rendezvényszervezés</h1>
-		<nav>
-			<ul>
-				<li><a href="index.php">Home Page</a></li>
-				<li><a href="events.php">Events</a></li>
-				<li><a href="about_us.php">About Us</a></li>
-				<li><a href="contact.php">Contact</a></li>
-			</ul>
-		</nav>
+    <div class="logo">
+    	<img src="images/logo2.0.png" alt="Logo">
+  	</div>
+  <div class="menu-toggle"></div>
+  <nav>
+    <ul class="menu-links">
+      <li><a href="home_page.php">Home Page</a></li>
+      <li><a href="events.php">Events</a></li>
+      <li><a href="about_us.php">About Us</a></li>
+      <li><a href="#" onclick="showLoginPopup()">Login</a></li>
+      <li><a href="#" onclick="showRegistrationPopup()">Register</a></li>
+    </ul>
+  </nav>
 	</header>
