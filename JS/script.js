@@ -23,6 +23,16 @@ function hideAdminPopup() {
     document.getElementById("adminPopup").style.display = "none";
 }
 
+function openRegSite() {
+    window.location.href = "registration.php";
+}
+
+function openLoginSite() {
+    window.location.href = "login.php";
+}
+function goBack() {
+    window.location.href = document.referrer;
+  }
 function login() {
     var user_name = document.getElementById("user_name").value;
     var user_password = document.getElementById("user_password").value;

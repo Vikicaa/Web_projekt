@@ -3,59 +3,42 @@
 <head>
 	<title>Rendezvényszervezés</title>
 	<link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
-  	<link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
-	<link rel="stylesheet" type="text/css" href="CSS/style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
+  <link rel="stylesheet" type="text/css" href="CSS/login.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 	<script src="JS\script.js"></script>
+  <style>
+    form{
+    height: 900px;
+    }
+  </style>
 </head>
 <body>
 <header>
-	<div class="logo">
-    	<img src="images/logo2.0.png" alt="Logo">
-  	</div>
-  <div class="menu-toggle"></div>
-  <nav>
-    <ul class="menu-links">
-      <li><a href="home_page.php">Home Page</a></li>
-      <li><a href="events.php">Events</a></li>
-      <li><a href="about_us.php">About Us</a></li>
-      <li><a href="" onclick="showLoginPopup()">Login</a></li>
-      <li><a href="register.php">Register</a></li>
-    </ul>
-  </nav>
 </header>
+<div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+  <form action = register.php method = "POST">
+    <h3>Create an account</h3>
+        <label for="user_name">Username:</label>
+        <input type="text" placeholder="Username:" id="username" name="user_name" required><br>
 
-<nav class="dropdown-menu">
-  <ul class="menu-links">
-    <li><a href="home_page.php">Home Page</a></li>
-    <li><a href="events.php">Events</a></li>
-    <li><a href="about_us.php">About Us</a></li>
-    <li><a href="#" onclick="showLoginPopup()">Login</a></li>
-    <li><a href="register.php">Register</a></li>
-  </ul>
-</nav>
-
-            <h2>Register</h2>
-            <form action = register.php method = "POST">
-                <label for="user_name">Username:</label>
-                <input type="text" id="user_name" name="user_name" required><br>
-
-                <label for="user_password">Password:</label>
-                <input type="password" id="user_password" name="user_password" required><br>
+        <label for="user_password">Password:</label>
+        <input type="password" placeholder="Password:" id="password" name="user_password" required><br>
 
 				<label for="user_email">Email:</label>
-                <input type="email" id="user_email" name="user_email" required><br>
+        <input type="email" placeholder="Email:" id="password" name="user_email" required><br>
 
 				<label for="user_phone">Phone:</label>
-                <input type="number" id="user_phone" name="user_phone" required><br><br>
+        <input type="number" placeholder="Phone number:" id="password" name="user_phone" required><br><br>
 
-                <button type="submit" onclick="register()">Register</button>
-                <button type="button" onclick="hideRegistrationPopup()">Close</button>
-            </form>
-
-            <footer>
-		<p>Kapcsolat: info@rendezvenyszervezes.hu</p>
-		<p>Telefon: +36 30 123 4567</p>
-	</footer>
+        <button type="submit" onclick="register()">Create</button>
+        <button type="button" onclick="openLoginSite()">Log in</button>
+  </form>
 
 </body>
 </html>

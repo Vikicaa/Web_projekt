@@ -5,37 +5,22 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
   	<link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
 	<link rel="stylesheet" type="text/css" href="CSS/style.css">
+	<link rel="stylesheet" type="text/css" href="CSS/login.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 	<script src="JS\script.js"></script>
 </head>
 <body>
-<header>
-	<div class="logo">
-    	<img src="images/logo2.0.png" alt="Logo">
-  	</div>
-  <div class="menu-toggle"></div>
-  <nav>
-    <ul class="menu-links">
-      <li><a href="home_page.php">Home Page</a></li>
-      <li><a href="events.php">Events</a></li>
-      <li><a href="about_us.php">About Us</a></li>
-      <li><a href="login.php">Login</a></li>
-      <li><a href="registration.php">Register</a></li>
-    </ul>
-  </nav>
-</header>
 
-<nav class="dropdown-menu">
-  <ul class="menu-links">
-    <li><a href="home_page.php">Home Page</a></li>
-    <li><a href="events.php">Events</a></li>
-    <li><a href="about_us.php">About Us</a></li>
-    <li><a href="login.php">Login</a></li>
-    <li><a href="register.php">Register</a></li>
-  </ul>
-</nav>
-
-
+<?php
+include 'header.php'
+?>
 	<main>
+	<div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
 		<section>
 			<h2>Közelgő Rendezvények</h2>
 			<ul>
