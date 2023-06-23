@@ -1,0 +1,180 @@
+/* Responsiveness */
+@media screen and (max-width: 600px) {
+  header {
+    position: relative;
+  }
+
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    color: #fff;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    z-index: 999;
+  }
+
+  .menu-toggle::after {
+    content: "\2630";
+    font-size: 24px;
+  }
+
+  .menu-toggle.active::after {
+    content: "\2715";
+  }
+
+  .menu-links {
+    display: none;
+  }
+
+  .dropdown-menu.active .menu-links {
+    display: block;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #333;
+    padding: 10px;
+  }
+
+  .dropdown-menu .menu-links li {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .dropdown-menu .menu-links li a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .dropdown-menu .menu-links li a:hover {
+    text-decoration: underline;
+  }
+
+}
+
+
+@media screen and (min-width: 601px) {
+  /* Egyedi stílus a nagy képernyőhöz */
+
+  .menu-links {
+    display: block !important;
+    
+  }
+
+  .dropdown-menu {
+    display: none !important;
+  }
+}
+
+
+/* Alapvető formázás */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fejléc */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 1.5em;
+}
+
+header h1 {
+  margin: 0;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Fő tartalom */
+main {
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #333;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* Pop-up ablakok */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  max-width: 400px;
+  margin: 100px auto;
+}
+
+/* Lábléc */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+}
+
+header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo {
+  position: absolute;
+  left: 6%;
+  top: 3%;
+  transform: translate(-50%, -50%);
+}
+
+.logo img {
+  width: 10em; /* Változtasd meg a méretet az igényeid szerint */
+  height: auto;
+  margin-right: 50px; /* Változtasd meg a margót az igényeid szerint */
+}
+
+@media screen and (max-width: 768px) {
+  .logo {
+    position: absolute;
+    transform: none;
+    text-align: center;
+  }
+}

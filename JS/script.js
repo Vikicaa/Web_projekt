@@ -1,3 +1,4 @@
+
 function showLoginPopup() {
     document.getElementById("loginPopup").style.display = "block";
 }
@@ -73,3 +74,13 @@ function admin() {
     hideAdminPopup();
     return true;
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    var menuToggle = document.querySelector('.menu-toggle');
+    var dropdownMenu = document.querySelector('.dropdown-menu');
+  
+    menuToggle.addEventListener('click', function() {
+      dropdownMenu.classList.toggle('active');
+    });
+  });
+  

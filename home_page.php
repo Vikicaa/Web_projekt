@@ -2,23 +2,38 @@
 <html>
 <head>
 	<title>Rendezvényszervezés</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
+  	<link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
+	<link rel="stylesheet" type="text/css" href="CSS/style.css">
+	<script src="JS\script.js"></script>
 </head>
 <body>
-	<!--elso git push-->
-	<!--second git push-->
-	<header>
-		<h1>Rendezvényszervezés</h1>
-		<nav>
-			<ul>
-				<li><a href="home_page.php">Home Page</a></li>
-				<li><a href="events.php">Events</a></li>
-				<li><a href="about_us.php">About Us</a></li>
-				<li><a href="#" onclick="showLoginPopup()">Login</a></li>
-            	<li><a href="#" onclick="showRegistrationPopup()">Register</a></li>
-			</ul>
-		</nav>
-	</header>
+<header>
+	<div class="logo">
+    	<img src="images/logo2.0.png" alt="Logo">
+  	</div>
+  <div class="menu-toggle"></div>
+  <nav>
+    <ul class="menu-links">
+      <li><a href="home_page.php">Home Page</a></li>
+      <li><a href="events.php">Events</a></li>
+      <li><a href="about_us.php">About Us</a></li>
+      <li><a href="#" onclick="showLoginPopup()">Login</a></li>
+      <li><a href="#" onclick="showRegistrationPopup()">Register</a></li>
+    </ul>
+  </nav>
+</header>
+
+<nav class="dropdown-menu">
+  <ul class="menu-links">
+    <li><a href="home_page.php">Home Page</a></li>
+    <li><a href="events.php">Events</a></li>
+    <li><a href="about_us.php">About Us</a></li>
+    <li><a href="#" onclick="showLoginPopup()">Login</a></li>
+    <li><a href="#" onclick="showRegistrationPopup()">Register</a></li>
+  </ul>
+</nav>
+
 
 	<main>
 		<section>
@@ -100,10 +115,6 @@
             </form>
         </div>
     </div>
-
-
-
-    <script src="JS\script.js"></script>
 
 	<footer>
 		<p>Kapcsolat: info@rendezvenyszervezes.hu</p>
