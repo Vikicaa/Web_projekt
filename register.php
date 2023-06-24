@@ -30,6 +30,6 @@ global $connection;
     }
     }
 
-    header('Location: home_page.php');
+    header('Location: user_home.php');
 exit();
 ?>

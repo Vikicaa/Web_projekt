@@ -13,25 +13,46 @@
 <body>
 
 <?php
-include 'header.php'
+session_start();
+
+include 'adminheader.php';
+
+
+    if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin']) {
+        // User is logged in as admin
+        echo '<h1>Welcome, admin!</h1>';
+    }
+
+
 ?>
-<div class="background">
+	<div class="background">
         <div class="shape"></div>
 		<div class="shape"></div>
         <div class="shape"></div>
     </div>
 	<main>
-
 		<section class="container">
-			<h2>Rólunk</h2>
-			<p>Mi egy nagy tapasztalattal rendelkező rendezvényszervező cég vagyunk. Széles körű szolgáltatásaink közé tartoznak a konferenciák, céges rendezvények, esküvők és egyéb ünnepségek szervezése. </p>
+			<h2>Közelgő Rendezvények</h2>
+			<ul>
+				<li>
+					<h3>XXI. Évforduló Ünnepség</h3>
+					<p>Dátum: 2023.06.05</p>
+					<p>Leírás: Az alapítás 21. évfordulója alkalmából szeretettel meghívjuk Önt és kedves családját a jubileumi ünnepségünkre.</p>
+				</li>
+				<li>
+					<h3>Éves Karácsonyi Party</h3>
+					<p>Dátum: 2023.12.22</p>
+					<p>Leírás: Szeretettel meghívjuk minden munkatársunkat és családjukat az éves karácsonyi ünnepségünkre.</p>
+				</li>
+			</ul>
 		</section>
 	</main>
 
-	<footer>
-		<p>Kapcsolat: info@rendezvenyszervezes.hu</p>
-		<p>Telefon: +36 30 123 4567</p>
-	</footer>
+	
 
 </body>
 </html>
+
+<?php
+include 'footer.php';
+?>

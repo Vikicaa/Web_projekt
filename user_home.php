@@ -15,10 +15,16 @@
 <?php
 session_start();
 
-include 'header.php';
+include 'userheader.php';
 
-// User is not logged in
-echo '<h1>Welcome, guest!</h1>';
+
+// Check if the user is logged in
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+    
+        // User is logged in as regular user
+        echo '<h1>Welcome, regular user!</h1>';
+    }
+
 
 ?>
 	<div class="background">

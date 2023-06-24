@@ -34,10 +34,11 @@
         <input type="email" placeholder="Email:" id="password" name="user_email" required><br>
 
 				<label for="user_phone">Phone:</label>
-        <input type="number" placeholder="Phone number:" id="password" name="user_phone" required><br><br>
+        <input type="text" placeholder="Phone number:" id="password" name="user_phone" required><br><br>
 
         <button type="submit" onclick="register()">Create</button>
         <button type="button" onclick="openLoginSite()">Log in</button>
+        
   </form>
 
 </body>

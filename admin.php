@@ -7,7 +7,7 @@ include("db_config.php");
 // Check if the admin is already logged in
 if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] === true) {
     // Admin is already logged in, redirect to the admin home page or any other logged-in page
-    header('Location: home_page.php');
+    header('Location: admin_home.php');
     exit();
 }
 
@@ -30,15 +30,15 @@ if (isset($_POST['admin_name']) && isset($_POST['admin_password'])) {
             $_SESSION['admin_loggedin'] = true;
 
             // Redirect to the admin home page
-            header('Location: home_page.php');
+            header('Location: admin_home.php');
             exit();
         } else {
             // Incorrect admin credentials
-            echo "Incorrect admin username or password!";
+            echo "Incorrect admin password!";
         }
     } else {
         // Incorrect admin credentials
-        echo "Incorrect admin username or password!";
+        echo "Incorrect admin username!";
     }
 }
 ?>

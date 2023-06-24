@@ -32,6 +32,7 @@
                 <button type="submit" onclick="login()">Log in</button>
                 <button type="button" onclick="openRegSite()">Sign up</button>
 				<button type="button" onclick="parent.location='adminlogin.php'">Admin</button>
+                
             </form>
 </body>
 </html>

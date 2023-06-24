@@ -7,7 +7,7 @@ include ("db_config.php");
 // Check if the user is already logged in
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     // User is already logged in, redirect to the home page or any other logged-in page
-    header('Location: home_page.php');
+    header('Location: user_home.php');
     exit();
 }
 
@@ -31,15 +31,15 @@ if (isset($_POST['user_name']) && isset($_POST['user_password'])) {
             $_SESSION['loggedin'] = true;
 
              // Átirányítás a főoldalra
-            header('Location: home_page.php');
+            header('Location: user_home.php');
             exit();
         } else {
             // Helytelen felhasználói adatok
-            echo "Helytelen felhasználónév vagy jelszó !";
+            echo "Incorrect password !";
         }
     }else {
         // Helytelen felhasználói adatok
-        echo "Helytelen felhasználónév vagy jelszó !";
+        echo "Incorrect username !";
     }
 }
 ?>

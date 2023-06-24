@@ -21,9 +21,9 @@ include 'header.php'
 		<div class="shape"></div>
         <div class="shape"></div>
     </div>
-	<main>
-		<section class="container">
-			<h2>Közelgő Rendezvények</h2>
+<main>
+	<section class="container">
+		<h2>Közelgő Rendezvények</h2>
 			<ul>
 				<li>
 					<h3>XXI. Évforduló Ünnepség</h3>
@@ -36,19 +36,12 @@ include 'header.php'
 					<p>Leírás: Szeretettel meghívjuk minden munkatársunkat és családjukat az éves karácsonyi ünnepségünkre.</p>
 				</li>
 			</ul>
-		</section>
-
-		<section class="container">
-			<h2>Rólunk</h2>
-			<p>Mi egy nagy tapasztalattal rendelkező rendezvényszervező cég vagyunk. Széles körű szolgáltatásaink közé tartoznak a konferenciák, céges rendezvények, esküvők és egyéb ünnepségek szervezése. </p>
-		</section>
-	</main>
-
-
-	<footer>
-		<p>Kapcsolat: info@rendezvenyszervezes.hu</p>
-		<p>Telefon: +36 30 123 4567</p>
-	</footer>
+	</section>
+</main>
 
 </body>
 </html>
+
+<?php
+include 'footer.php';
+?>
