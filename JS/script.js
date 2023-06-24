@@ -1,28 +1,3 @@
-
-function showLoginPopup() {
-    document.getElementById("loginPopup").style.display = "block";
-}
-
-function hideLoginPopup() {
-    document.getElementById("loginPopup").style.display = "none";
-}
-
-function showRegistrationPopup() {
-    document.getElementById("registrationPopup").style.display = "block";
-}
-
-function hideRegistrationPopup() {
-    document.getElementById("registrationPopup").style.display = "none";
-}
-
-function showAdminPopup() {
-    document.getElementById("adminPopup").style.display = "block";
-}
-
-function hideAdminPopup() {
-    document.getElementById("adminPopup").style.display = "none";
-}
-
 function openRegSite() {
     window.location.href = "registration.php";
 }
@@ -30,9 +5,11 @@ function openRegSite() {
 function openLoginSite() {
     window.location.href = "login.php";
 }
+
 function goBack() {
     window.location.href = document.referrer;
   }
+
 function login() {
     var user_name = document.getElementById("user_name").value;
     var user_password = document.getElementById("user_password").value;
@@ -44,7 +21,6 @@ function login() {
       return false;
     }
 
-    hideLoginPopup();
     return true;
 }
 
@@ -68,7 +44,6 @@ function register() {
       return false;
     }
 
-    hideRegistrationPopup();
     return true;
 
     
@@ -86,7 +61,6 @@ function admin() {
       return false;
     }
 
-    hideAdminPopup();
     return true;
 }
 

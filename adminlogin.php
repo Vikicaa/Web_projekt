@@ -20,7 +20,7 @@
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-            <form action = admin.php>
+            <form action = admin.php method = "POST">
                 <h3>Login Here</h3>
                 <label for="admin_name">Username:</label>
                 <input type="text" name="admin_name" placeholder="Admin:"  id="username"required><br>

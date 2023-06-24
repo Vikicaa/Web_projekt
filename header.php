@@ -1,7 +1,8 @@
 <header>
-	<div class="logo">
+	<!--<div class="logo">
     	<img src="images/logo2.0.png" alt="Logo">
   	</div>
+-->
   <div class="menu-toggle"></div>
   <nav>
     <ul class="menu-links">

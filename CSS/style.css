@@ -1,4 +1,3 @@
-/* Responsiveness */
 @media screen and (max-width: 600px) {
   header {
     position: relative;
@@ -28,12 +27,22 @@
   }
 
   .dropdown-menu.active .menu-links {
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
     display: block;
     position: absolute;
     top: 40px;
     right: 0;
+    border-radius: 10px;
     background-color: #333;
     padding: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    z-index: 3;
   }
 
   .dropdown-menu .menu-links li {
@@ -50,11 +59,11 @@
     text-decoration: underline;
   }
 
+
 }
 
 
 @media screen and (min-width: 601px) {
-  /* Egyedi stílus a nagy képernyőhöz */
 
   .menu-links {
     display: block !important;
@@ -69,16 +78,24 @@
 
 /* Alapvető formázás */
 body {
-  font-family: Arial, sans-serif;
+  background-color: #080710;
+  font-family: 'Poppins',sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
   margin: 0;
   padding: 0;
 }
 
 /* Fejléc */
 header {
-  background-color: #333;
+  background-color: #080710;
   color: #fff;
   padding: 1.5em;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
 }
 
 header h1 {
@@ -88,16 +105,31 @@ nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  font-family: 'Poppins',sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
 }
 
 nav ul li {
   display: inline;
   margin-right: 10px;
+  font-family: 'Poppins',sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
 }
 
 nav ul li a {
   color: #fff;
   text-decoration: none;
+  font-family: 'Poppins',sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
 }
 
 /* Fő tartalom */
@@ -122,24 +154,6 @@ li {
   margin-bottom: 10px;
 }
 
-/* Pop-up ablakok */
-.popup {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-}
-
-.popup-content {
-  background-color: #fff;
-  padding: 20px;
-  max-width: 400px;
-  margin: 100px auto;
-}
 
 /* Lábléc */
 footer {
@@ -166,9 +180,9 @@ header {
 }
 
 .logo img {
-  width: 10em; /* Változtasd meg a méretet az igényeid szerint */
+  width: 10em; 
   height: auto;
-  margin-right: 50px; /* Változtasd meg a margót az igényeid szerint */
+  margin-right: 50px; 
 }
 
 @media screen and (max-width: 768px) {
@@ -177,4 +191,91 @@ header {
     transform: none;
     text-align: center;
   }
+  .shape {
+    left: auto !important;
+    top: auto !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .shape:nth-child(1) {
+    left: -150px;
+    top: -40px;
+  }
+
+  .shape:nth-child(2) {
+    right: 75px;
+    bottom: -75px;
+  }
+
+  .shape:nth-child(3) {
+    left: 300px;
+    top: 50px;
+  }
+}
+.background{
+  width: 430px;
+  height: 520px;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  left: 50%;
+  top: 50%;
+}
+.background .shape{
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  border-radius: 50%;
+}
+.shape {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+}
+
+.shape:nth-child(1) {
+  background: linear-gradient(#1845ad8e, #23a2f66e);
+  left: -300px;
+  top: -80px;
+}
+
+.shape:nth-child(2) {
+  background: linear-gradient(to right, #ff522f73, #f0961967);
+  right: 150px;
+  bottom: -150px;
+}
+.shape:nth-child(3) {
+    background: linear-gradient(to left, #070A5273, #D2131273);
+    left: 600px;
+    top: 100px;
+}
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgba(255,255,255,0.13);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(8,7,16,0.6);
+  padding: 50px 35px;
+}
+
+.container section {
+  flex: 1 0 400px;
+  margin: 10px;
+}
+.container h2{
+  font-family: 'Poppins',sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgba(255,255,255,0.13);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(8,7,16,0.6);
+  padding: 50px 35px;
 }
