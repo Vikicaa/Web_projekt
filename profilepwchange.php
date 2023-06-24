@@ -1,58 +1,63 @@
 <?php
+session_start();
 
 // Adatbázis kapcsolat beállítása
-include ("db_config.php");
+include("db_config.php");
+
+// Ellenőrizze a bejelentkezést és keresse meg az aktuális felhasználó email címét
+// Ezt a részt az adott bejelentkezési rendszerhez igazítsa
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['user_email'])) {
+    $loggedInEmail = $_SESSION['user_email'];
+
+    // Űrlap beküldésének ellenőrzése és az új jelszó frissítése
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $currentPassword = $_POST['current_password'];
+        $newPassword = $_POST['new_password'];
+        global $connection;
+
+        // Felhasználói adatok lekérdezése az adatbázisból
+        $query = "SELECT user_password FROM users WHERE user_email = '$loggedInEmail'";
+        $result = $connection->query($query);
+
+        if ($result->num_rows > 0) {
+            $userData = $result->fetch_assoc();
+            $storedPassword = $userData['user_password'];
+
+            // Jelenlegi jelszó ellenőrzése
+            if (password_verify($currentPassword, $storedPassword)) {
 
 
-// Űrlap beküldésének ellenőrzése és az új jelszó frissítése
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $currentPassword = $_POST['current_password'];
-    $newPassword = $_POST['new_password'];
+                // Új jelszó ellenőrzése
+                if ($currentPassword !== $newPassword) {
+                    if (strlen($newPassword) < 8) {
+                        echo "A jelszónak legalább 8 karakter hosszúnak kell lennie.";
+                    }
+                    if (!preg_match("/[A-Z]/", $newPassword)) {
+                        echo "A jelszónak tartalmaznia kell legalább egy nagybetűt.";
+                    } else {
+                        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
-    // Felhasználói adatok lekérdezése az adatbázisból
-    $query = "SELECT user_password FROM users WHERE user_id = '$loggedInEmail'";
-    $result = $connection->query($query);
+                        $updateQuery = "UPDATE users SET user_password = '$hashedPassword' WHERE user_email = '$loggedInEmail'";
+                        $connection->query($updateQuery);
 
-    if ($result->num_rows > 0) {
-        $userData = $result->fetch_assoc();
-        $currentHashedPassword = $userData['user_password'];
-
-        // Jelenlegi jelszó ellenőrzése
-        if (password_verify($currentPassword, $currentHashedPassword)) {
-            // Új jelszó ellenőrzése
-            if ($currentPassword !== $newPassword) {
-                $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-
-                $updateQuery = "UPDATE users SET user_password = '$hashedPassword' WHERE user_id = '$loggedInEmail'";
-                $connection->query($updateQuery);
-
-                if (strlen($newPassword) < 8) {
-                    echo "The password need to be minimum 8 character.";
-                }
-                if (!preg_match("/[A-Z]/", $newPassword)) {
-                    echo "The password need to contain a capital letter.";
-                }
-                if($currentPassword === $newPassword){
-
-                }else{
-                    echo "Password change is succesfull!"
+                        echo "A jelszóváltoztatás sikeres!";
+                    }
+                } else {
+                    // Hiba: Az új jelszó megegyezik a jelenlegi jelszóval
+                    echo "Az új jelszó nem lehet ugyanaz, mint a jelenlegi jelszó.";
                 }
             }
-        }else {
-            // Hiba: Az új jelszó megegyezik a jelenlegi jelszóval
-            http_response_code(400); // Hibaüzenet: Bad Request
-            echo "The password can't be same.";
+            else {
+                // Hiba: Helytelen jelenlegi jelszó
+                echo "Helytelen jelenlegi jelszó.";
+                echo $storedPassword;
+            }
+        } 
+        else {
+            // Hiba: Felhasználó nem található
+            echo "Felhasználó nem található.";
         }
-    } else {
-        // Hiba: Helytelen jelenlegi jelszó
-        http_response_code(401); // Hibaüzenet: Unauthorized
-        echo "Incorrect password.";
     }
-} else {
-    // Hiba: Felhasználó nem található
-    http_response_code(404); // Hibaüzenet: Not Found
-    echo "User not found.";
 }
-
 $connection->close();
 ?>

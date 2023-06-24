@@ -1,11 +1,15 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Felhasználói profil</title>
 </head>
 <body>
-    <?php
-session_start();
+
+<?php
 
 // Adatbázis kapcsolat beállítása
 include ("db_config.php");
@@ -26,6 +30,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
         $userData = $result->fetch_assoc();
         $username = $userData['user_name'];
         $email = $userData['user_email'];
+        $phone=$userData['user_phone'];
+        
 
         // Űrlap mezők kitöltése az adatbázisban tárolt adatokkal
         echo '<!DOCTYPE html>
@@ -39,7 +45,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
             <h2>Profil adatok</h2>
             <p>Username: ' . $username . '</p>
             <p>Email: ' . $email . '</p>
-        
+            <p>Phone: ' . $phone . '</p>
         </body>
         </html>';
     } else {
@@ -81,10 +87,13 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
     <!-- Jelszóváltás kérése űrlap -->
     <h2>Password change</h2>
     <p>If you forgot your password you can send a request to change it.</p>
-    <form method="POST" action="profilepwchange.php">
-        <label for="user_password">Email :</label>
-        <input type="email" id="user_password" name="user_password" required><br>
+    <form action="profilepwchange.php" method="POST">
+    <label for="current_password">Jelenlegi jelszó:</label>
+        <input type="password" id="current_password" name="current_password" required><br>
 
+        <label for="new_password">Új jelszó:</label>
+        <input type="password" id="new_password" name="new_password" required><br>
+        
         <input type="submit" value="Password change request">
     </form>
 </body>

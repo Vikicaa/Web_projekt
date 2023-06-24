@@ -1,6 +1,7 @@
 <?php
+session_start();
 
-include ("db_config.php");
+include("db_config.php");
 
 // Űrlap beküldésének ellenőrzése és az adatok frissítése
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -11,13 +12,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
-    $query = "UPDATE users SET user_name = '$newName', user_password = '$hashedPassword', user_email = '$newEmail', user_phone = '$newPhone' WHERE user_id = '$loggedInEmail'";
-    $connection->query($query);
+    // Ellenőrizd, hogy van bejelentkezett felhasználó és lekérdezd az email címet
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['user_email'])) {
+        $loggedInEmail = $_SESSION['user_email'];
 
-    echo "Profile change is succesfull!"
+        // Ellenőrizd, hogy az aktuális felhasználó létezik az adatbázisban
+        $query = "SELECT * FROM users WHERE user_email = '$loggedInEmail'";
+        $result = $connection->query($query);
 
+        if ($result->num_rows > 0) {
+            // Aktuális felhasználó megtalálva az adatbázisban
+            $query = "UPDATE users SET user_name = '$newName', user_password = '$hashedPassword', user_email = '$newEmail', user_phone = '$newPhone' WHERE user_email = '$loggedInEmail'";
+            $connection->query($query);
+
+            echo "A profil sikeresen frissítve lett!";
+            header('Location: profile.php');
+        } else {
+            echo "Felhasználó nem található.";
+        }
+    } else {
+        echo "Felhasználó nem található.";
+    }
 } else {
-    echo "User not found.";
+    echo "Hiba a kérés feldolgozásában.";
 }
 
 $connection->close();

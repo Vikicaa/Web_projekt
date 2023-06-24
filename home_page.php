@@ -17,9 +17,22 @@ session_start();
 
 include 'header.php';
 
-// User is not logged in
-echo '<h1>Welcome, guest!</h1>';
-
+// Check if the user is logged in
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+    // User is logged in
+    if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] === true) {
+        // User is logged in as admin
+        echo '<h1>Welcome, admin user!</h1>';
+        echo '<a href="logout.php" class="logout-btn">Log Out</a>'; // Log out button
+    } else {
+        // User is logged in as regular user
+        echo '<h1>Welcome, regular user!</h1>';
+        echo '<a href="logout.php" class="logout-btn">Log Out</a>'; // Log out button
+    }
+} else {
+    // User is not logged in
+    echo '<h1>Welcome, guest user!</h1>';
+}
 ?>
 	<div class="background">
         <div class="shape"></div>
@@ -42,13 +55,12 @@ echo '<h1>Welcome, guest!</h1>';
 				</li>
 			</ul>
 		</section>
-	</main>
 
-	
+		<section class="container" >
+			<h2>Rólunk</h2>
+			<p>Mi egy nagy tapasztalattal rendelkező rendezvényszervező cég vagyunk. Széles körű szolgáltatásaink közé tartoznak a konferenciák, céges rendezvények, esküvők és egyéb ünnepségek szervezése. </p>
+		</section>
+	</main>
 
 </body>
 </html>
-
-<?php
-include 'footer.php';
-?>

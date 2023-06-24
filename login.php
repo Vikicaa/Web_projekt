@@ -23,8 +23,8 @@
 
 			<h3>Login Here</h3>
 
-                <label for="user_name">Username:</label>
-                <input type="text" placeholder="Username:" name="user_name" id="username" required><br>
+                <label for="user_email">User Email:</label>
+                <input type="email" placeholder="Email:" name="user_email" id="user_email" required><br>
 
                 <label for="user_password">Password:</label>
                 <input type="password" placeholder="Password:" id="password" name="user_password" required><br><br>
