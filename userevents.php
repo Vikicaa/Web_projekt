@@ -44,7 +44,7 @@ else{
 
 	<button type="button" onclick="parent.location='addevent.php'">Create Event</button>
     <button type="button" onclick="parent.location='changeevent2.php'">Change Event</button>
-	<button type="button" onclick="parent.location='deleteevent.php'">Delete Event</button>
+	<button type="button" onclick="parent.location='deleteevent2.php'">Delete Event</button>
 
 
 <!-- Események listázása -->
@@ -60,12 +60,13 @@ else{
 
 	if ($result->num_rows > 0) {
 		while ($row = $result->fetch_assoc()) {
+			$event_id=$row['event_id'];
 			echo "<li>" . $row["event_name"] . " - " . $row["event_date"] . " - " . $row["event_location"] . " - " . $row["event_price"] . "</li>";
 		}
 	} else {
 		echo "<li>There are no events.</li>";
 	}
-
+	$_SESSION['event_id'] = $event_id;
 	// Adatbázis kapcsolat bezárása
 	$connection->close();
 	?>

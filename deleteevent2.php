@@ -12,6 +12,7 @@
         <?php
         // Az adatbázis kapcsolódási adataidhoz és az adatbázis sémádhoz kell igazítani.
         include ("db_config.php");
+        session_start();
 
         // Események lekérdezése az adatbázisból
         $sql = "SELECT * FROM events";
