@@ -25,14 +25,13 @@ function login() {
 }
 
 function register() {
-    var user_name = document.getElementById("user_name").value;
-    var user_password = document.getElementById("user_password").value;
+    const nameInput = form.querySelector('input[user_name="user_name"]');
+    const passwordInput = form.querySelector('input[user_password="user_password"]');
     var user_email = document.getElementById("user_email").value;
     var user_phone = document.getElementById("user_phone").value;
 
     const form = document.querySelector('form');
-    const nameInput = form.querySelector('input[user_name="user_name"]');
-    const passwordInput = form.querySelector('input[user_password="user_password"]');
+    
 
 
     if(nameInput === "" || passwordInput === "" || user_email === "" || user_phone === ""){
@@ -64,12 +63,32 @@ function admin() {
     return true;
 }
 
+function createEvent() {
+  const form = document.querySelector('form');
+  const nameInput = form.querySelector('input[name="event_name"]');
+  const dateInput = form.querySelector('input[name="event_date"]');
+  const eventLocation = document.getElementById("event_location").value;
+  const eventPrice = document.getElementById("event_price").value;
+
+  if (nameInput.value === "" || dateInput.value === "" || eventLocation === "" || eventPrice === "") {
+    alert("Error: Please fill all inputs!");
+    if (nameInput.value === "") nameInput.style.border = "1px solid red";
+    if (dateInput.value === "") dateInput.style.border = "1px solid red";
+    if (eventLocation === "") document.getElementById('event_location').style.border = "1px solid red";
+    if (eventPrice === "") document.getElementById('event_price').style.border = "1px solid red";
+    return false;
+  }
+
+  return true;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    var menuToggle = document.querySelector('.menu-toggle');
-    var dropdownMenu = document.querySelector('.dropdown-menu');
-  
-    menuToggle.addEventListener('click', function() {
-      dropdownMenu.classList.toggle('active');
-    });
+  var menuToggle = document.querySelector('.menu-toggle');
+  var dropdownMenu = document.querySelector('.dropdown-menu');
+
+  menuToggle.addEventListener('click', function() {
+    dropdownMenu.classList.toggle('active');
   });
+});
+
   
