@@ -50,11 +50,11 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
         echo '<!DOCTYPE html>
         <html>
         <head>
-            <title>Felhasználói profil</title>
+            <title>User Profile</title>
         </head>
         <body>
         
-            <h1>Felhasználói profil</h1>
+            <h1>User Profiel</h1>
 
             <section class="container">
             <h2>Profil adatok</h2>
@@ -66,12 +66,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
         </body>
         </html>';
     } else {
-        echo '<p>A felhasználói adatok nem találhatók.</p>';
+        echo '<p>User datas not found.</p>';
     }
 
     $connection->close();
 } else {
-    echo '<p>Nincs bejelentkezett felhasználó.</p>';
+    echo '<p>There is no loginned user.</p>';
 }
 ?>
 

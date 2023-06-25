@@ -25,16 +25,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $query = "UPDATE users SET user_name = '$newName', user_password = '$hashedPassword', user_email = '$newEmail', user_phone = '$newPhone' WHERE user_email = '$loggedInEmail'";
             $connection->query($query);
 
-            echo "A profil sikeresen frissítve lett!";
+            echo "The profile is updated!";
             header('Location: profile.php');
         } else {
-            echo "Felhasználó nem található.";
+            echo "User not found.";
         }
     } else {
-        echo "Felhasználó nem található.";
+        echo "User not found.";
     }
 } else {
-    echo "Hiba a kérés feldolgozásában.";
+    echo "Something went wrong with change requests.";
 }
 
 $connection->close();

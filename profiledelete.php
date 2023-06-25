@@ -18,18 +18,16 @@ if (isset($_POST['delete_account'])) {
             $deleteQuery = "DELETE FROM users WHERE user_email = '$loggedInEmail'";
             $connection->query($deleteQuery);
 
-            echo "A profil sikeresen törölve lett!";
             header('Location: logout.php');
-            header('Location: login.php');
-
+        
         } else {
-            echo "Felhasználó nem található.";
+            echo "User not found.";
         }
     } else {
-        echo "Felhasználó nem található.";
+        echo "User not found.";
     }
 } else {
-    echo "Hiba a kérés feldolgozásában.";
+    echo "Something went wrong with change requests.";
 }
 
 $connection->close();

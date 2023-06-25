@@ -39,11 +39,11 @@ if (isset($_POST['user_email']) && isset($_POST['user_password'])) {
             exit();
         } else {
             // Helytelen felhasználói adatok
-            $errors['user_password'] = "Incorrect username or password!";
+            $errors['user_password'] = "Incorrect email or password!";
         }
     } else {
         // Helytelen felhasználói adatok
-        $errors['user_email'] = "Incorrect username or password!";
+        $errors['user_email'] = "Incorrect email or password!";
     }
 }
 

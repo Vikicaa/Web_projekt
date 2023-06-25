@@ -29,33 +29,31 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
 
                 // Új jelszó ellenőrzése
                 if ($currentPassword !== $newPassword) {
-                    if (strlen($newPassword) < 8) {
-                        echo "A jelszónak legalább 8 karakter hosszúnak kell lennie.";
-                    }
-                    if (!preg_match("/[A-Z]/", $newPassword)) {
-                        echo "A jelszónak tartalmaznia kell legalább egy nagybetűt.";
+                    if (strlen($user_password) < 8 || !preg_match("/[A-Z]/", $user_password)) {
+                        $errors['user_password'] = "The password needs to be a minimum of 8 characters and needs to contain a capital letter.";
+                        $_SESSION['errors'] = $errors;
                     } else {
                         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
                         $updateQuery = "UPDATE users SET user_password = '$hashedPassword' WHERE user_email = '$loggedInEmail'";
                         $connection->query($updateQuery);
 
-                        echo "A jelszóváltoztatás sikeres!";
+                        echo "The password is updated!";
                     }
                 } else {
                     // Hiba: Az új jelszó megegyezik a jelenlegi jelszóval
-                    echo "Az új jelszó nem lehet ugyanaz, mint a jelenlegi jelszó.";
+                    echo "The new password can't be the same like the old one.";
                 }
             }
             else {
                 // Hiba: Helytelen jelenlegi jelszó
-                echo "Helytelen jelenlegi jelszó.";
+                echo "Incorrect Password.";
                 echo $storedPassword;
             }
         } 
         else {
             // Hiba: Felhasználó nem található
-            echo "Felhasználó nem található.";
+            echo "User not found.";
         }
     }
 }

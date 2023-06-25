@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Felhasználókezelés</title>
+    <title>User managament</title>
     <link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
   <link rel="stylesheet" type="text/css" href="CSS/profil.css">
@@ -18,7 +18,7 @@
         <div class="shape"></div>
     </div>
     
-    <h1>Felhasználókezelés</h1>
+    <h1>User managament</h1>
 
     <?php
     // Ellenőrizze a bejelentkezést és az adminisztrátor jogosultságot
@@ -29,14 +29,14 @@
     if ($isAdmin) {
         // Felhasználók listázása és kezelése
         // Itt megjelenítheti a felhasználók listáját, és lehetőséget adhat a felhasználók módosítására vagy törlésére
-        echo '<h2>Felhasználók listája</h2>';
+        echo '<h2>List of Users</h2>';
         // Adatbázisból lekérdezi a felhasználók adatait és megjeleníti őket egy táblázatban
 
         echo '<table class="container">';
         echo '    <tr>';
-        echo '        <th>Felhasználónév</th>';
+        echo '        <th>Username</th>';
         echo '        <th>Email</th>';
-        echo '        <th>Műveletek</th>';
+        echo '        <th>Operations</th>';
         echo '    </tr>';
 
         // Adatbázisból lekérdezi a felhasználók adatait
@@ -55,8 +55,8 @@
             echo '        <td>' . $username . '</td>';
             echo '        <td>' . $email . '</td>';
             echo '        <td>';
-            echo '            <a href="profileupdateasadmin.php?id=' . $userid . '">Módosítás</a>';
-            echo '            <a href="profiledeleteasadmin.php?id=' . $userid . '">Törlés</a>';
+            echo '            <a href="profileupdateasadmin.php?id=' . $userid . '">Change</a>';
+            echo '            <a href="profiledeleteasadmin.php?id=' . $userid . '">Delete</a>';
             echo '        </td>';
             echo '    </tr>';
         }
@@ -65,7 +65,7 @@
 
         $connection->close();
     } else {
-        echo '<p>Nincs megfelelő jogosultság az oldal megtekintéséhez.</p>';
+        echo '<p>Do not have permission to visit thos page.</p>';
     }
     ?>
 </body>
