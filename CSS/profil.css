@@ -1,0 +1,121 @@
+
+@media screen and (max-width: 768px) {
+    .logo {
+      position: absolute;
+      transform: none;
+      text-align: center;
+    }
+    .shape {
+      left: auto !important;
+      top: auto !important;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .shape:nth-child(1) {
+      left: -150px;
+      top: -40px;
+    }
+  
+    .shape:nth-child(2) {
+      right: 75px;
+      bottom: -75px;
+    }
+  
+    .shape:nth-child(3) {
+      left: 300px;
+      top: 50px;
+    }
+  }
+body {
+    background-color: #080710;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+    margin: 0;
+    text-align: center;
+    padding: 0;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  .background {
+    width: 50%;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+  }
+  
+  .background .shape {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+  }
+  
+  .shape {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+  }
+  
+  .shape:nth-child(1) {
+    background: linear-gradient(#1845ad8e, #23a2f66e);
+    left: -300px;
+    top: -80px;
+  }
+  
+  .shape:nth-child(2) {
+    background: linear-gradient(to right, #ff522f73, #f0961967);
+    right: 150px;
+    bottom: -150px;
+  }
+  
+  .shape:nth-child(3) {
+    background: linear-gradient(to left, #070A5273, #D2131273);
+    left: 1000px;
+    top: 100px;
+  }
+  
+  .container {
+    background-color: rgba(255, 255, 255, 0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 50px 35px;
+    width: 25%;
+    margin: 0 auto;
+  
+  }
+ 
+  input {
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+  }
+  
+  input[type="submit"] {
+    margin-top: 50px;
+    width: 100%;
+    background-color: #ffffffa8;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

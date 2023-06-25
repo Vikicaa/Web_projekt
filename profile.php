@@ -6,9 +6,22 @@ session_start();
 <html>
 <head>
     <title>Felhasználói profil</title>
+	<link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
+  <link rel="stylesheet" type="text/css" href="CSS/profil.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
+<div class="background">
+        <div class="shape"></div>
+		<div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    
 <?php
 
 // Adatbázis kapcsolat beállítása
@@ -40,12 +53,16 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
             <title>Felhasználói profil</title>
         </head>
         <body>
-            <h1>Felhasználói profil</h1>
         
+            <h1>Felhasználói profil</h1>
+
+            <section class="container">
             <h2>Profil adatok</h2>
-            <p>Username: ' . $username . '</p>
+            
+            <p><br>Username: ' . $username . '</p>
             <p>Email: ' . $email . '</p>
             <p>Phone: ' . $phone . '</p>
+        </section>
         </body>
         </html>';
     } else {
@@ -57,8 +74,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
     echo '<p>Nincs bejelentkezett felhasználó.</p>';
 }
 ?>
-<h2>Profile data change</h2>
-    <form method="POST" action="profilechange.php">
+
+    <form method="POST" action="profilechange.php" class="container">
+    <h2>Profile data change</h2>
         <label for="user_name">Username:</label>
         <input type="text" id="user_name" name="user_name" required><br>
 
@@ -75,9 +93,11 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
     </form>
 
     <!-- Fiók törlése űrlap -->
+    
+    
+    <form method="POST" action="profiledelete.php" class="container">
     <h2>Profile Delete</h2>
     <p>With this option your profile is going to deleted and can't restore it!</p>
-    <form method="POST" action="profiledelete.php">
         <label for="delete_account">Delete confirmation:</label>
         <input type="checkbox" id="delete_account" name="delete_account" required><br>
 
@@ -85,9 +105,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
     </form>
 
     <!-- Jelszóváltás kérése űrlap -->
+    
+    <form action="profilepwchange.php" method="POST" class="container">
     <h2>Password change</h2>
     <p>If you forgot your password you can send a request to change it.</p>
-    <form action="profilepwchange.php" method="POST">
     <label for="current_password">Jelenlegi jelszó:</label>
         <input type="password" id="current_password" name="current_password" required><br>
 

@@ -18,20 +18,20 @@ session_start();
 
 <?php
 
-
-include 'userheader.php';
-
-
 // Check if the user is logged in
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] === true) {
+	include 'adminheader.php';
+}
+elseif (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 
-		$user_name = $_SESSION['user_name'];
-        // User is logged in as regular user
-		
-        echo '<h1>Welcome,  ' . $user_name . '!</h1>';
-    }
-
-
+	$user_name = $_SESSION['user_name'];
+	// User is logged in as regular user
+	include 'userheader.php';
+	echo '<h1>Welcome,  ' . $user_name . '!</h1>';
+}
+else{
+	include 'header.php';
+}
 ?>
 	<div class="background">
         <div class="shape"></div>

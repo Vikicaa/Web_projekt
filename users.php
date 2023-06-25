@@ -2,8 +2,22 @@
 <html>
 <head>
     <title>Felhasználókezelés</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
+  <link rel="stylesheet" type="text/css" href="CSS/profil.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
+
+<div class="background">
+        <div class="shape"></div>
+		<div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    
     <h1>Felhasználókezelés</h1>
 
     <?php
@@ -18,7 +32,7 @@
         echo '<h2>Felhasználók listája</h2>';
         // Adatbázisból lekérdezi a felhasználók adatait és megjeleníti őket egy táblázatban
 
-        echo '<table>';
+        echo '<table class="container">';
         echo '    <tr>';
         echo '        <th>Felhasználónév</th>';
         echo '        <th>Email</th>';
@@ -41,8 +55,8 @@
             echo '        <td>' . $username . '</td>';
             echo '        <td>' . $email . '</td>';
             echo '        <td>';
-            echo '            <a href="profil_modositas.php?id=' . $userid . '">Módosítás</a>';
-            echo '            <a href="felhasznalo_torlese.php?id=' . $userid . '">Törlés</a>';
+            echo '            <a href="profileupdateasadmin.php?id=' . $userid . '">Módosítás</a>';
+            echo '            <a href="profiledeleteasadmin.php?id=' . $userid . '">Törlés</a>';
             echo '        </td>';
             echo '    </tr>';
         }

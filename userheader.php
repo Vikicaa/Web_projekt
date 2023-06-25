@@ -6,7 +6,7 @@
   <div class="menu-toggle"></div>
   <nav>
     <ul class="menu-links">
-      <li><a href="home_page.php">Home Page</a></li>
+      <li><a href="user_home.php">Home Page</a></li>
       <li><a href="events.php">Events</a></li>
       <li><a href="profile.php">Profile</a></li>
       <li><a href="about_us.php">About Us</a></li>
@@ -17,7 +17,7 @@
 
 <nav class="dropdown-menu">
   <ul class="menu-links">
-    <li><a href="home_page.php">Home Page</a></li>
+    <li><a href="user_home.php">Home Page</a></li>
     <li><a href="events.php">Events</a></li>
     <li><a href="about_us.php">About Us</a></li>
     <li><a href="logout.php">Logout</a></li>
