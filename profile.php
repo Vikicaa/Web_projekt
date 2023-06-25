@@ -106,15 +106,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
 
     <!-- Jelszóváltás kérése űrlap -->
     
-    <form action="profilepwchange.php" method="POST" class="container">
+    <form action="forgotpwsite.php" method="POST" class="container">
     <h2>Password change</h2>
     <p>If you forgot your password you can send a request to change it.</p>
-    <label for="current_password">Jelenlegi jelszó:</label>
-        <input type="password" id="current_password" name="current_password" required><br>
-
-        <label for="new_password">Új jelszó:</label>
-        <input type="password" id="new_password" name="new_password" required><br>
-        
+      
         <input type="submit" value="Password change request">
     </form>
 </body>
