@@ -31,7 +31,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     }
 } else {
     // User is not logged in
-    echo '<h1>Welcome, guest user!</h1>';
+    echo '<h1>Welcome, guest!</h1>';
 }
 ?>
 	<div class="background">
