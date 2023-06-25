@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-$email = $_SESSION['forgorpwuser_email'];
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

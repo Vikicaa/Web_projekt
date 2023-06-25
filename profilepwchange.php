@@ -6,6 +6,8 @@ include("db_config.php");
 
 $email = $_SESSION['forgorpwuser_email'];
 
+echo $email;
+
 
     // Űrlap beküldésének ellenőrzése és az új jelszó frissítése
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

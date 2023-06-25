@@ -60,12 +60,13 @@ else{
 
 	if ($result->num_rows > 0) {
 		while ($row = $result->fetch_assoc()) {
+			
 			echo "<li>" . $row["event_name"] . " - " . $row["event_date"] . " - " . $row["event_location"] . " - " . $row["event_price"] . "</li>";
 		}
 	} else {
 		echo "<li>There are no events.</li>";
 	}
-
+	
 	// Adatbázis kapcsolat bezárása
 	$connection->close();
 	?>
