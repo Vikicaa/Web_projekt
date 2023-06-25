@@ -25,11 +25,13 @@ if (isset($_POST['user_email']) && isset($_POST['user_password'])) {
     // Ellenőrizze, hogy van-e találat
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
+        $user_id = $row['user_id'];
         $user_name = $row['user_name'];
         $storedPassword = $row['user_password'];
 
         if (password_verify($user_password, $storedPassword)) {
             $_SESSION['loggedin'] = true;
+            $_SESSION['user_id'] = $user_id;
             $_SESSION['user_name'] = $user_name;
             $_SESSION['user_email'] = $user_email;
             $_SESSION['user_password'] = $user_password;

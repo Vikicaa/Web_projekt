@@ -1,14 +1,22 @@
 <?php
-session_start();
-include("db_config.php");
+ include("db_config.php");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_event"])) {
+session_start();
+
+global $connection;
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION["user_id"])) {
+
         $user_id = $_SESSION["user_id"];
         $event_name = $_POST["event_name"];
         $event_date = $_POST["event_date"];
         $event_location = $_POST["event_location"];
         $event_price = $_POST["event_price"];
+        
+        
 
         $sql = "INSERT INTO events (event_name, event_date, event_location, event_price, user_id) VALUES ('$event_name', '$event_date', '$event_location', '$event_price', '$user_id')";
 
