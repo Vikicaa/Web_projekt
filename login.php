@@ -92,11 +92,14 @@ $_SESSION['errors'] = $errors;
                 <label for="user_email">User Email:</label>
                 <input type="email" placeholder="Email:" name="user_email" id="user_email" required><br>
                 
-
                 <label for="user_password">Password:</label>
                 <input type="password" placeholder="Password:" id="password" name="user_password" required><br><br>
+
+                <a href="forgotpw.php">Forgot password?</a>
+
                 <?php if(isset($_SESSION['errors']['user_password'])) { echo '<p class="error">'.$_SESSION['errors']['user_password'].'</p>'; } ?><br>
                 <?php if(isset($_SESSION['errors']['user_email'])) { echo '<p class="error">'.$_SESSION['errors']['user_email'].'</p>'; } ?><br>
+                
                 <button type="submit" onclick="login()">Log in</button>
                 <button type="button" onclick="openRegSite()">Sign up</button>
 				<button type="button" onclick="parent.location='adminlogin.php'">Admin</button>

@@ -4,10 +4,8 @@ session_start();
 // Adatbázis kapcsolat beállítása
 include("db_config.php");
 
-// Ellenőrizze a bejelentkezést és keresse meg az aktuális felhasználó email címét
-// Ezt a részt az adott bejelentkezési rendszerhez igazítsa
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['user_email'])) {
-    $loggedInEmail = $_SESSION['user_email'];
+$email = $_SESSION['forgorpwuser_email'];
+
 
     // Űrlap beküldésének ellenőrzése és az új jelszó frissítése
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -16,7 +14,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
         global $connection;
 
         // Felhasználói adatok lekérdezése az adatbázisból
-        $query = "SELECT user_password FROM users WHERE user_email = '$loggedInEmail'";
+        $query = "SELECT user_password FROM users WHERE user_email = '$email'";
         $result = $connection->query($query);
 
         if ($result->num_rows > 0) {
@@ -35,7 +33,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
                     } else {
                         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
-                        $updateQuery = "UPDATE users SET user_password = '$hashedPassword' WHERE user_email = '$loggedInEmail'";
+                        $updateQuery = "UPDATE users SET user_password = '$hashedPassword' WHERE user_email = '$email'";
                         $connection->query($updateQuery);
 
                         echo "The password is updated!";
@@ -56,6 +54,5 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
             echo "User not found.";
         }
     }
-}
 $connection->close();
 ?>
