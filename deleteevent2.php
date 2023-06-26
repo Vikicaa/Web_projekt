@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Események kezelése</title>
+    <title>Event Managament</title>
 </head>
 <body>
-    <h1>Események kezelése</h1>
+    <h1>Event Managament</h1>
 
     <!-- Események listázása -->
-    <h2>Események listája</h2>
+    <h2>Events List</h2>
     <ul>
         <?php
         // Az adatbázis kapcsolódási adataidhoz és az adatbázis sémádhoz kell igazítani.

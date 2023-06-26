@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Események kezelése</title>
+    <title>Events Managament</title>
     <link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
   	<link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
 	<link rel="stylesheet" type="text/css" href="CSS/changeevent2.css">
@@ -19,8 +19,8 @@
     </div>
 <main >
 	<div class="eventdiv">
-            <h1>Események kezelése</h1>
-            <h2>Események listája</h2>
+            <h1>Events Managament</h1>
+            <h2>Events List</h2>
         <div class="head">
           
             <button class="button" type="button" onclick="openUserEventsSite()">Back</button>

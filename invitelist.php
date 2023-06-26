@@ -1,37 +1,62 @@
 <?php
 session_start();
-
 include("db_config.php");
 
-if (isset($_SESSION["recipients"])) {
-  $recipients = $_SESSION["recipients"];
+// Az esemény azonosítója
+$event_id = $_SESSION["event_id"];
 
-  // Az eseményhez tartozó meghívottak lekérdezése az adatbázisból
-  $query = "SELECT invited_mail FROM invited WHERE invited_mail IN ('$recipients')";
-  $result = $connection->query($query);
+// Meghívottak lekérdezése az adatbázisból az esemény azonosítója alapján
+$sql = "SELECT * FROM invited WHERE event_id = '$event_id'";
+$result = $connection->query($sql);
 
-  if ($result && $result->num_rows > 0) {
-    echo "<h1>Meghívottak listája</h1>";
-    echo "<table>";
-    echo "<tr><th>Név</th><th>Email</th></tr>";
-
-    while ($row = $result->fetch_assoc()) {
-      $name = $row['email'];
-      $email = $row['email'];
-
-      echo "<tr><td>$name</td><td>$email</td></tr>";
-    }
-
-    echo "</table>";
+// Törlés logika
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_recipient"])) {
+  $invited_token = $_POST["invited_token"];
+  $delete_sql = "DELETE FROM invited WHERE invited_token = '$invited_token'";
+  $delete_result = $connection->query($delete_sql);
+  
+  if ($delete_result === TRUE) {
+    echo "The invited ($recipient_id) is successfully deleted.";
+    header("Location: invitelist.php"); // Átirányítás a frissített listára
+    exit();
   } else {
-    echo "Nincs találat a meghívottakra.";
+    echo "Something went wrong while deleting: " . $connection->error;
   }
-
-  // Session adatok törlése
-  unset($_SESSION["recipients"]);
-} else {
-  echo "Nincs elérhető adat a meghívottakra.";
 }
 
 $connection->close();
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>List of invited members</title>
+</head>
+<body>
+  <h1>List of invited memebers</h1>
+
+  <table>
+    <thead>
+      <tr>
+        
+        <th>E-mail</th>
+        <th>Operations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php while ($row = $result->fetch_assoc()) { ?>
+        <tr>
+          
+          <td><?php echo $row["invited_mail"]; ?></td>
+          <td>
+            <form action="" method="POST">
+              <input type="hidden" name="invited_token" value="<?php echo $row["invited_token"]; ?>">
+              <button type="submit" name="delete_recipient">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <?php } ?>
+    </tbody>
+  </table>
+</body>
+</html>

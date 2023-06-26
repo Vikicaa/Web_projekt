@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Rendezvényszervezés</title>
+	<title>Event Organization</title>
 	<link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
   	<link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
 	<link rel="stylesheet" type="text/css" href="CSS/style.css">
@@ -65,6 +65,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 
 </div>
 
+		<section class="container" >
+			<h2>Rólunk</h2>
+			<p>Mi egy nagy tapasztalattal rendelkező rendezvényszervező cég vagyunk. Széles körű szolgáltatásaink közé tartoznak a konferenciák, céges rendezvények, esküvők és egyéb ünnepségek szervezése. </p>
+		</section>
 	</main>
 
 </body>

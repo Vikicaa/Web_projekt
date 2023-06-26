@@ -28,12 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($event_id)) {
     $result = $connection->query($sql);
 
     if ($result === TRUE) {
-        echo "Az esemény sikeresen módosítva lett.";
+        echo "The event details are changed.";
         $_SESSION["event_id"] = $event_id; // Az event_id visszaállítása a SESSION-ben
         header('Location: changeevent2.php');
         exit(); // Kilépés a script végrehajtásából
     } else {
-        echo "Hiba történt az esemény módosítása során: " . $connection->error;
+        echo "Something went wrong while updating: " . $connection->error;
     }
 }
 
@@ -45,7 +45,7 @@ $connection->close();
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rendezvényszervezés</title>
+    <title>Event Organization</title>
     <link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
     <link rel="stylesheet" type="text/css" href="CSS/login.css">
