@@ -65,10 +65,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 
 </div>
 
-		<section class="container" >
-			<h2>Rólunk</h2>
-			<p>Mi egy nagy tapasztalattal rendelkező rendezvényszervező cég vagyunk. Széles körű szolgáltatásaink közé tartoznak a konferenciák, céges rendezvények, esküvők és egyéb ünnepségek szervezése. </p>
-		</section>
 	</main>
 
 </body>

@@ -68,7 +68,7 @@ $_SESSION['errors'] = $errors;
     <style>
   
     form{
-    height: 80%;
+    height: 800px;
     }
     .error {
     font-family: 'Poppins',sans-serif;
