@@ -30,17 +30,27 @@ $connection->close();
 	<title>Rendezvényszervezés</title>
 	<link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
   	<link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
-	<link rel="stylesheet" type="text/css" href="CSS/style.css">
+	<link rel="stylesheet" type="text/css" href="CSS/login.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 	<script src="JS\script.js"></script>
-
+	<style>
+		form{
+			height:85%;
+		}
+	</style>
 </head>
 <body>
+<div class="background">
+        <div class="shape"></div>
+		<div class="shape"></div>
+        <div class="shape"></div>
+</div>
 
-<h2>Change event details</h2>
-<form action="" method="POST">
+<h1>Change event details</h1>
+
+<form action="" method="POST" class="container">
 	<label for="event_name">Event name:</label>
 	<input type="text" name="event_name" required><br>
 
@@ -51,9 +61,10 @@ $connection->close();
 	<input type="text" name="event_location" required><br>
 
 	<label for="event_price">Event price:</label>
-	<input type="number" name="event_price" required><label> $</label><br>
+	<input type="number" name="event_price" required><br>
 
 	<button type="submit">Change Event Details</button>
+	<button class="button" type="button" onclick="openChangeEvent2Site()">Back</button>
 </form>
 
 </body>

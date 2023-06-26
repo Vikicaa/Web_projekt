@@ -1,13 +1,15 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>User managament</title>
     <link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
-  <link rel="stylesheet" type="text/css" href="CSS/profil.css">
+  <link rel="stylesheet" type="text/css" href="CSS/users.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <script src="JS\script.js"></script>
 
 </head>
 <body>
@@ -19,6 +21,7 @@
     </div>
     
     <h1>User managament</h1>
+    <button class="button" type="button" onclick="goBack()">Back</button>
 
     <?php
     // Ellenőrizze a bejelentkezést és az adminisztrátor jogosultságot
@@ -34,7 +37,7 @@
 
         echo '<table class="container">';
         echo '    <tr>';
-        echo '        <th>Username</th>';
+        echo '        <th>User name</th>';
         echo '        <th>Email</th>';
         echo '        <th>Operations</th>';
         echo '    </tr>';
@@ -55,8 +58,14 @@
             echo '        <td>' . $username . '</td>';
             echo '        <td>' . $email . '</td>';
             echo '        <td>';
-            echo '            <a href="profileupdateasadmin.php?id=' . $userid . '">Change</a>';
-            echo '            <a href="profiledeleteasadmin.php?id=' . $userid . '">Delete</a>';
+            echo '            <form action="profileupdateasadmin.php" method="GET">';
+            echo '                <input type="hidden" name="id" value="' . $userid . '">';
+            echo '                <button type="submit">Change</button>';
+            echo '            </form>';
+            echo '            <form action="profiledeleteasadmin.php" method="GET">';
+            echo '                <input type="hidden" name="id" value="' . $userid . '">';
+            echo '                <button type="submit">Delete</button>';
+            echo '            </form>';
             echo '        </td>';
             echo '    </tr>';
         }
@@ -68,5 +77,6 @@
         echo '<p>Do not have permission to visit thos page.</p>';
     }
     ?>
+    
 </body>
 </html>

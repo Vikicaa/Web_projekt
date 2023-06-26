@@ -13,9 +13,9 @@
         // Az adatbázis kapcsolódási adataidhoz és az adatbázis sémádhoz kell igazítani.
         include ("db_config.php");
         session_start();
-
+        $user_id = $_SESSION['user_id'];
         // Események lekérdezése az adatbázisból
-        $sql = "SELECT * FROM events";
+        $sql = "SELECT * FROM events WHERE user_id = $user_id";
         $result = $connection->query($sql);
 
         if ($result->num_rows > 0) {

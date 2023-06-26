@@ -12,7 +12,7 @@ session_start();
 	<link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-
+  <script src="JS\script.js"></script>
 </head>
 <body>
 
@@ -20,8 +20,12 @@ session_start();
         <div class="shape"></div>
 		<div class="shape"></div>
         <div class="shape"></div>
-    </div>
-    
+</div>
+
+<h1>User Profiel</h1>
+
+<button type="button" onclick="goBack()">Back</button>
+
 <?php
 
 // Adatbázis kapcsolat beállítása
@@ -47,24 +51,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
         
 
         // Űrlap mezők kitöltése az adatbázisban tárolt adatokkal
-        echo '<!DOCTYPE html>
-        <html>
-        <head>
-            <title>User Profile</title>
-        </head>
-        <body>
-        
-            <h1>User Profiel</h1>
-
-            <section class="container">
-            <h2>Profil adatok</h2>
-            
+        echo '
+        <section class="container">       
             <p><br>Username: ' . $username . '</p>
             <p>Email: ' . $email . '</p>
             <p>Phone: ' . $phone . '</p>
-        </section>
-        </body>
-        </html>';
+        </section>';
     } else {
         echo '<p>User datas not found.</p>';
     }

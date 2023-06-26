@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
     $result = $connection->query($query);
 
     if ($result) {
-        echo "User deleted successfully.";
+        header('Location: users.php');
     } else {
         echo "Error deleting user: " . $connection->error;
     }

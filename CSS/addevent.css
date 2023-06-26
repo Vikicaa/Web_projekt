@@ -42,9 +42,13 @@ body {
     right: -30px;
     bottom: -80px;
 }
-
+h1{
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+}
 form {
-    height: 750px;
+    height: 85%;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
@@ -65,14 +69,7 @@ form * {
     outline: none;
     border: none;
 }
-h1{
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    color: #ffffff;
-    letter-spacing: 0.5px;
-    outline: none;
-    border: none;
-}
+
 form h3 {
     font-size: 32px;
     font-weight: 500;

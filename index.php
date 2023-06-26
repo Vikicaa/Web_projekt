@@ -29,9 +29,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         echo '<h1>Welcome, regular user!</h1>';
         echo '<a href="logout.php" class="logout-btn">Log Out</a>'; // Log out button
     }
-} else {
-    // User is not logged in
-    echo '<h1>Welcome, guest!</h1>';
 }
 ?>
 	<div class="background">
@@ -40,21 +37,33 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         <div class="shape"></div>
     </div>
 	<main>
-		<section class="container">
-			<h2>Közelgő Rendezvények</h2>
-			<ul>
-				<li>
-					<h3>XXI. Évforduló Ünnepség</h3>
-					<p>Dátum: 2023.06.05</p>
-					<p>Leírás: Az alapítás 21. évfordulója alkalmából szeretettel meghívjuk Önt és kedves családját a jubileumi ünnepségünkre.</p>
-				</li>
-				<li>
-					<h3>Éves Karácsonyi Party</h3>
-					<p>Dátum: 2023.12.22</p>
-					<p>Leírás: Szeretettel meghívjuk minden munkatársunkat és családjukat az éves karácsonyi ünnepségünkre.</p>
-				</li>
-			</ul>
-		</section>
+	<div class="eventdiv">
+
+	<h2>Events List</h2>
+	
+	<?php
+	// Az adatbázis kapcsolódása
+	include ("db_config.php");
+
+	// Események lekérdezése az adatbázisból
+	$sql = "SELECT * FROM events";
+	$result = $connection->query($sql);
+
+	if ($result->num_rows > 0) {
+		while ($row = $result->fetch_assoc()) {
+			$event_id=$row['event_id'];
+			echo "<h2>" . $row["event_name"] . "</h2>";
+			echo "<div class='events'>" . "Date: " . $row["event_date"] . " - Location: " . $row["event_location"] . " - Price: " . $row["event_price"] . "</div>";
+		}
+	} else {
+		echo "<div class='events'>There are no events.</div>";
+	}
+	$_SESSION['event_id'] = $event_id;
+	// Adatbázis kapcsolat bezárása
+	$connection->close();
+	?>
+
+</div>
 
 		<section class="container" >
 			<h2>Rólunk</h2>

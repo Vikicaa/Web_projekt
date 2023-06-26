@@ -5,7 +5,12 @@ function openRegSite() {
 function openLoginSite() {
     window.location.href = "login.php";
 }
-
+function openChangeEvent2Site() {
+  window.location.href = "changeevent2.php";
+}
+function openUserEventsSite() {
+  window.location.href = "userevents.php";
+}
 function goBack() {
     window.location.href = document.referrer;
   }
@@ -90,5 +95,3 @@ document.addEventListener('DOMContentLoaded', function() {
     dropdownMenu.classList.toggle('active');
   });
 });
-
-  
