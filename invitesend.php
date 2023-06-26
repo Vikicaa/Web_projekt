@@ -1,5 +1,8 @@
 <?php
+
 session_start();
+
+$errors = array();
 
 include("db_config.php");
 
@@ -59,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $existing_email_result = $connection->query($existing_email_query);
 
                 if ($existing_email_result->num_rows > 0) {
-                    echo "The email '$email' already exists for this event.";
+                    $errors['user_email'] = "The email '$email' already exists for this event.";
                 } else {
 
                 $mail->Subject = $subject;
@@ -75,12 +78,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         } catch (Exception $e) {
-            echo "Something went wrong while sending email: " . $mail->ErrorInfo . "<br>";
+            $errors['user_email'] = "Something went wrong while sending email: " . $mail->ErrorInfo . "<br>";
         }
     } else {
-        echo "Events not found with this username.";
+        $errors['user_email'] = "Events not found with this username.";
     }
 }
+// Store the errors in the session
+$_SESSION['errors'] = $errors;
 ?>
 
 <!DOCTYPE html>
@@ -95,6 +100,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <style>
         form {
             height: 85%;
+        }
+        .error {
+            font-family: 'Poppins',sans-serif;
+            color: red;
+            letter-spacing: 0.5px;
+            outline: none;
+            border: none;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -133,7 +146,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $connection->close();
     ?>
-
+    <?php if(isset($_SESSION['errors']['user_email'])) { echo '<p class="error">'.$_SESSION['errors']['user_email'].'</p>'; } ?><br>
+            
     <button class="button" type="submit">Send</button>
     <button class="button" type="button" onclick="parent.location='userevents.php'">Back</button>
 </form>
