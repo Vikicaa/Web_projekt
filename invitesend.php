@@ -3,39 +3,66 @@ session_start();
 
 include("db_config.php");
 
-// Az eseményhez tartozó email címek lekérdezése az adatbázisból
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
+$user_id = $_SESSION['user_id'];
+
+$sql = "SELECT * FROM invited";
+	$result = $connection->query($sql);
+
+	if ($result->num_rows > 0) {
+		while ($row = $result->fetch_assoc()) {
+			$invited_token=$row['invited_token'];
+			
+		}
+	} else {
+		echo "<div class='events'>There are no invited.</div>";
+	}
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_SESSION["event_id"])) {
         $event_id = $_SESSION["event_id"];
         $recipients = $_POST["recipients"]; // Beírt címzett email címek
         $recipient_emails = explode(",", $recipients); // Címzett email címek tömbbe szétválasztása
 
-        foreach ($recipient_emails as $email) {
-            $email = trim($email); // Felesleges szóközök eltávolítása
+        $mail = new PHPMailer(true);
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'blackandwhitedeveloperstudio@gmail.com'; //Your gmail
+            $mail->Password = 'qhkzescyxvyxfqho'; // Your gmail app pw
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port = 465;
 
-            // Ellenőrizzük, hogy az email már szerepel-e a küldött meghívók között
-            $checkQuery = "SELECT * FROM invited WHERE invited_mail = '$email' AND event_id = $event_id";
-            $checkResult = $connection->query($checkQuery);
+            $mail->setFrom('blackandwhitedeveloperstudio@gmail.com'); //you email
+            $mail->isHTML(true);
+            $subject = $_POST["subject"];
+            $message = $_POST["message"];
+            
+            foreach ($recipient_emails as $email) {
+                $email = trim($email); // Felesleges szóközök eltávolítása
+                $mail->addAddress($email);
 
-            if ($checkResult && $checkResult->num_rows == 0) {
-                // Az email még nem szerepel a küldött meghívók között, így elküldjük
-                $subject = $_POST["subject"];
-                $message = $_POST["message"];
+                $mail->Subject = $subject;
+                $mail->Body = $message;
 
-                // Email küldése
-                $headers = "From: nev@example.com"; // Az email küldő neve és címe
-                if (mail($email, $subject, $message, $headers)) {
-                    echo "Sikeresen elküldve: " . $email . "<br>";
+                $mail->send();
 
-                    // A küldött meghívó rögzítése a "invited" táblában
-                    $insertQuery = "INSERT INTO invited (invited_mail, event_id) VALUES ('$email', $event_id)";
-                    $connection->query($insertQuery);
-                } else {
-                    echo "Hiba történt az email küldése során: " . $email . "<br>";
-                }
-            } else {
-                echo "Az email már korábban elküldve: " . $email . "<br>";
+                echo "Sikeresen elküldve: " . $email . "<br>";
+                $invited_token++;
+                // A küldött meghívó rögzítése a "invited" táblában
+                $insertQuery = "INSERT INTO invited (invited_token,invited_mail,event_id,user_id) VALUES ('$invited_token','$email','$event_id','$user_id')";
+                $connection->query($insertQuery);
             }
+        } catch (Exception $e) {
+            echo "Hiba történt az email küldése során: " . $mail->ErrorInfo . "<br>";
         }
     }
 }
@@ -75,7 +102,7 @@ $connection->close();
     <input type="text" name="subject" required><br>
 
     <label for="message">Üzenet:</label>
-    <textarea name="message" rows="6" required></textarea><br>
+    <textarea name="message" rows="6" style="background-color:orange;" required></textarea><br>
 
     <button class="button" type="submit">Küldés</button>
     <button class="button" type="button" onclick="parent.location='userevents.php'">Vissza</button>

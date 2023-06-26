@@ -89,7 +89,7 @@ $_SESSION['errors'] = $errors;
                 <?php if(isset($_SESSION['errors']['admin_password'])) { echo '<p class="error">'.$_SESSION['errors']['admin_password'].'</p>'; } ?><br>
                 
                 <button type="submit" onclick="admin()">Log In</button>
-                c
+                <button class="button" type="button" onclick="openLoginSite()">Back</button>
 				
             </form>
 

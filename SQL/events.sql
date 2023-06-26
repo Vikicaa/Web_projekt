@@ -214,7 +214,7 @@ ALTER TABLE `gift`
   MODIFY `gift_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 ALTER TABLE `invited`
-  MODIFY `invited_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `invited_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Constraints for dumped tables
