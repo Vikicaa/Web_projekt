@@ -3,7 +3,6 @@ session_start();
 
 include("db_config.php");
 
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -13,23 +12,28 @@ require 'phpmailer/src/SMTP.php';
 $user_id = $_SESSION['user_id'];
 
 $sql = "SELECT * FROM invited";
-	$result = $connection->query($sql);
+$result = $connection->query($sql);
 
-	if ($result->num_rows > 0) {
-		while ($row = $result->fetch_assoc()) {
-			$invited_token=$row['invited_token'];
-			
-		}
-	} else {
-		echo "<div class='events'>There are no invited.</div>";
-	}
-
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $invited_token = $row['invited_token'];
+    }
+} else {
+    echo "<div class='events'>There are no invited.</div>";
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_SESSION["event_id"])) {
-        $event_id = $_SESSION["event_id"];
-        $recipients = $_POST["recipients"]; // Beírt címzett email címek
-        $recipient_emails = explode(",", $recipients); // Címzett email címek tömbbe szétválasztása
+    $event_name = $_POST["event_select"];
+    $recipients = $_POST["recipients"]; // Beírt címzett email címek
+    $recipient_emails = explode(",", $recipients); // Címzett email címek tömbbe szétválasztása
+
+    // Az esemény azonosítójának lekérdezése az esemény neve alapján
+    $event_query = "SELECT event_id FROM events WHERE event_name = '$event_name'";
+    $event_result = $connection->query($event_query);
+
+    if ($event_result->num_rows > 0) {
+        $event_row = $event_result->fetch_assoc();
+        $event_id = $event_row['event_id'];
 
         $mail = new PHPMailer(true);
         try {
@@ -41,11 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->SMTPSecure = 'ssl';
             $mail->Port = 465;
 
-            $mail->setFrom('blackandwhitedeveloperstudio@gmail.com'); //you email
+            $mail->setFrom('blackandwhitedeveloperstudio@gmail.com'); //your email
             $mail->isHTML(true);
             $subject = $_POST["subject"];
             $message = $_POST["message"];
-            
+
             foreach ($recipient_emails as $email) {
                 $email = trim($email); // Felesleges szóközök eltávolítása
                 $mail->addAddress($email);
@@ -55,19 +59,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $mail->send();
 
-                echo "Sikeresen elküldve: " . $email . "<br>";
                 $invited_token++;
-                // A küldött meghívó rögzítése a "invited" táblában
-                $insertQuery = "INSERT INTO invited (invited_token,invited_mail,event_id,user_id) VALUES ('$invited_token','$email','$event_id','$user_id')";
+
+                // A küldött meghívó rögzítése az "invited" táblában
+                $insertQuery = "INSERT INTO invited (invited_token, invited_mail, event_id, user_id) VALUES ('$invited_token', '$email', '$event_id', '$user_id')";
                 $connection->query($insertQuery);
             }
         } catch (Exception $e) {
             echo "Hiba történt az email küldése során: " . $mail->ErrorInfo . "<br>";
         }
+    } else {
+        echo "Nem található esemény a választott név alapján.";
     }
 }
-
-$connection->close();
 ?>
 
 <!DOCTYPE html>
@@ -102,7 +106,24 @@ $connection->close();
     <input type="text" name="subject" required><br>
 
     <label for="message">Üzenet:</label>
-    <textarea name="message" rows="6" style="background-color:orange;" required></textarea><br>
+    <textarea name="message" rows="6" class="message" required></textarea><br>
+
+    <?php
+    $sql1 = "SELECT * FROM events";
+    $result1 = $connection->query($sql1);
+
+    if ($result1->num_rows > 0) {
+        echo "<select name='event_select' class='select_opction'>";
+        while ($row = $result1->fetch_assoc()) {
+            $event_name = $row['event_name'];
+            echo "<option name='$event_name'>$event_name</option>";
+        }
+        echo "</select>";
+    } else {
+        echo "<div class='events'>There are no events.</div>";
+    }
+    $connection->close();
+    ?>
 
     <button class="button" type="submit">Küldés</button>
     <button class="button" type="button" onclick="parent.location='userevents.php'">Vissza</button>

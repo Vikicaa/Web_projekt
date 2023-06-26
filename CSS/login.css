@@ -141,3 +141,36 @@ button {
 .social i {
     margin-right: 4px;
 }
+.message{
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.27);
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+select {
+    padding: 15px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.27);
+    width: 100%;
+    margin-top: 25px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  option {
+    padding: 5px;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.27);
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  option:hover {
+    background-color: rgba(255, 255, 255, 0.27);
+    font-family: 'Poppins', sans-serif;
+  }
+  
