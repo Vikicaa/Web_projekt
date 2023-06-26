@@ -34,8 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($event_result->num_rows > 0) {
         $event_row = $event_result->fetch_assoc();
         $event_id = $event_row['event_id'];
-
         $mail = new PHPMailer(true);
+
         try {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
@@ -54,6 +54,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $email = trim($email); // Felesleges szóközök eltávolítása
                 $mail->addAddress($email);
 
+                // Check if the email already exists for the given event
+                $existing_email_query = "SELECT * FROM invited WHERE invited_mail = '$email' AND event_id = '$event_id'";
+                $existing_email_result = $connection->query($existing_email_query);
+
+                if ($existing_email_result->num_rows > 0) {
+                    echo "The email '$email' already exists for this event.";
+                } else {
+
                 $mail->Subject = $subject;
                 $mail->Body = $message;
 
@@ -65,6 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $insertQuery = "INSERT INTO invited (invited_token, invited_mail, event_id, user_id) VALUES ('$invited_token', '$email', '$event_id', '$user_id')";
                 $connection->query($insertQuery);
             }
+        }
         } catch (Exception $e) {
             echo "Something went wrong while sending email: " . $mail->ErrorInfo . "<br>";
         }
