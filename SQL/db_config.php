@@ -1,9 +1,9 @@
 <?php
 
     define("HOST","localhost");
-    define("USER","bw");
-    define("PASSWORD","4qEA1dED43ObX44");
-    define("DATABASE","bw");
+    define("USER","root");
+    define("PASSWORD","");
+    define("DATABASE","events");
 
     $connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
     if (mysqli_connect_errno())

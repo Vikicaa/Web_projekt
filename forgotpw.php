@@ -29,7 +29,7 @@ if (isset($_POST["send"])) {
     $subject = "Password Recovery";
 
     // Üzenet változóba mentése
-    $message = "http://localhost/Web_Project/Web_projekt/forgotpwsite.php";
+    $message = "https://bw.stud.vts.su.ac.rs/forgotpwsite.php";
 
     // Tárgy beállítása
     $mail->Subject = $subject;

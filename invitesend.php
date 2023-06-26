@@ -132,7 +132,7 @@ $_SESSION['errors'] = $errors;
     <textarea name="message" rows="6" class="message" required></textarea><br>
 
     <?php
-    $sql1 = "SELECT * FROM events";
+    $sql1 = "SELECT * FROM events WHERE user_id = '$user_id'";
     $result1 = $connection->query($sql1);
 
     if ($result1->num_rows > 0) {
