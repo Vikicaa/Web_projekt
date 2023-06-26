@@ -95,14 +95,5 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
 
         <input type="submit" value="Profile delete">
     </form>
-
-    <!-- Jelszóváltás kérése űrlap -->
-    
-    <form action="forgotpwsite.php" method="POST" class="container">
-    <h2>Password change</h2>
-    <p>If you forgot your password you can send a request to change it.</p>
-      
-        <input type="submit" value="Password change request">
-    </form>
 </body>
 </html>

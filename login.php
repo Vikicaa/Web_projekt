@@ -56,7 +56,7 @@ $_SESSION['errors'] = $errors;
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Rendezvényszervezés</title>
+	<title>Event Organization</title>
 	<link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
   	<link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
 

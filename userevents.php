@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rendezvényszervezés</title>
+    <title>Event Organization</title>
     <link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
     <link rel="stylesheet" type="text/css" href="CSS/userevents.css"> 
@@ -56,26 +56,6 @@ else{
 </main>
 </div>
 
-<footer class="footer">
-    <div class="contact">
-        <h3>Elérhetőségek</h3>
-        <ul>
-            <li><a href="mailto:info@example.com">info@example.com</a></li>
-            <li><a href="tel:+1234567890">+1234567890</a></li>
-        </ul>
-    </div>
-    <div class="social-media">
-        <h3>Közösségi média</h3>
-        <ul>
-            <li><a href="https://www.facebook.com/example">Facebook</a></li>
-            <li><a href="https://twitter.com/example">Twitter</a></li>
-            <li><a href="https://www.instagram.com/example">Instagram</a></li>
-        </ul>
-    </div>
-    <div class="address">
-        <h3>Cím</h3>
-        <p>1234 Példa város, Példa utca 1.</p>
-    </div>
-</footer>
+
 </body>
 </html>

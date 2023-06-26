@@ -66,10 +66,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $connection->query($insertQuery);
             }
         } catch (Exception $e) {
-            echo "Hiba történt az email küldése során: " . $mail->ErrorInfo . "<br>";
+            echo "Something went wrong while sending email: " . $mail->ErrorInfo . "<br>";
         }
     } else {
-        echo "Nem található esemény a választott név alapján.";
+        echo "Events not found with this username.";
     }
 }
 ?>
@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Email küldése</title>
+    <title>Email sending</title>
     <link rel="stylesheet" type="text/css" href="CSS/login.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -96,16 +96,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="shape"></div>
 </div>
 
-<h1>Email küldése</h1>
+<h1>Email sending</h1>
 
 <form action="" method="POST" class="container">
-    <label for="recipients">Címzett email címek (vesszővel elválasztva):</label>
+    <label for="recipients">Recipient email addresses (comma separated):</label>
     <input type="text" name="recipients" required><br>
 
-    <label for="subject">Tárgy:</label>
+    <label for="subject">Subject:</label>
     <input type="text" name="subject" required><br>
 
-    <label for="message">Üzenet:</label>
+    <label for="message">Message:</label>
     <textarea name="message" rows="6" class="message" required></textarea><br>
 
     <?php
@@ -125,8 +125,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $connection->close();
     ?>
 
-    <button class="button" type="submit">Küldés</button>
-    <button class="button" type="button" onclick="parent.location='userevents.php'">Vissza</button>
+    <button class="button" type="submit">Send</button>
+    <button class="button" type="button" onclick="parent.location='userevents.php'">Back</button>
 </form>
 
 </body>

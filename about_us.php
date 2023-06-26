@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Rendezvényszervezés</title>
+	<title>Event Organization</title>
 	<link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
   	<link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
 	<link rel="stylesheet" type="text/css" href="CSS/style.css">
@@ -40,8 +40,8 @@ else{
 	<main>
 
 		<section class="container">
-			<h2>Rólunk</h2>
-			<p>Mi egy nagy tapasztalattal rendelkező rendezvényszervező cég vagyunk. Széles körű szolgáltatásaink közé tartoznak a konferenciák, céges rendezvények, esküvők és egyéb ünnepségek szervezése. </p>
+			<h2>About Us</h2>
+			<p>We are an event organization company with a lot of experience. Our wide range of services includes the organization of conferences, corporate events, weddings and other celebrations. </p>
 		</section>
 	</main>
 
