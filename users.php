@@ -21,7 +21,7 @@
     </div>
     
     <h1>User managament</h1>
-    <button class="button" type="button" onclick="goBack()">Back</button>
+    <button class="button" type="button" onclick="parent.location='admin_home.php'">Back</button>
 
     <?php
     // Ellenőrizze a bejelentkezést és az adminisztrátor jogosultságot

@@ -22,9 +22,9 @@ session_start();
         <div class="shape"></div>
 </div>
 
-<h1>User Profiel</h1>
+<h1>User Profile</h1>
 
-<button type="button" onclick="goBack()">Back</button>
+<button type="button" onclick="parent.location='user_home.php'">Back</button>
 
 <?php
 

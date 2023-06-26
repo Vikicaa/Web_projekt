@@ -26,9 +26,10 @@
             <button class="button" type="button" onclick="openUserEventsSite()">Back</button>
         </div>
     <?php
+	session_start();
 	// Az adatbázis kapcsolódása
 	include ("db_config.php");
-    session_start();
+    
     $user_id = $_SESSION['user_id'];
 	// Események lekérdezése az adatbázisból
 	$sql = "SELECT * FROM events WHERE user_id = $user_id";
@@ -43,7 +44,7 @@
 	} else {
 		echo "<div class='events'>There are no events.</div>";
 	}
-	$_SESSION['event_id'] = $event_id;
+	
 	// Adatbázis kapcsolat bezárása
 	$connection->close();
 	?>

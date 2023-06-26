@@ -20,10 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $sql = "INSERT INTO events (event_name, event_date, event_location, event_price, user_id) VALUES ('$event_name', '$event_date', '$event_location', '$event_price', '$user_id')";
 
-       
 
         if ($connection->query($sql) === TRUE) {
             echo "The event is created.";
+            header('Location: userevents.php');
         } else {
             echo "Something went wrong while creating the event: " . $connection->error;
         }
@@ -53,7 +53,7 @@ $connection->close();
 		<div class="shape"></div>
         <div class="shape"></div>
 </div>
-<h1>Esemény létrehozása</h1>
+<h1>Event create</h1>
 
 
 
@@ -70,8 +70,8 @@ $connection->close();
 	<label for="event_price">Event price(Din):</label>
 	<input type="number" name="event_price" required><br>
 
-	<button type="submit" name="create_event">Create Event</button>
-    <button class="button" type="button" onclick="goBack()">Back</button>
+	<button type="submit" name="create_event" onclick="createEvent()">Create Event</button>
+    <button class="button" type="button" onclick="parent.location='userevents.php'">Back</button>
 </form>
 
 </body>

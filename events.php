@@ -20,7 +20,7 @@
     </div>
     
     <h1>Event managament</h1>
-    <button class="button" type="button" onclick="goBack()">Back</button>
+    <button class="button" type="button" onclick="parent.location='admin_home.php'">Back</button>
     <?php
     // Ellenőrizze a bejelentkezést és az adminisztrátor jogosultságot
     // Ezt a részt az adott bejelentkezési rendszerhez és jogosultságkezeléshez igazítsa
@@ -37,6 +37,8 @@
         echo '    <tr>';
         echo '        <th>Event Name</th>';
         echo '        <th>Date</th>';
+        echo '        <th>Location</th>';
+        echo '        <th>Price</th>';
         echo '        <th>Operations</th>';
         echo '    </tr>';
 
@@ -51,17 +53,21 @@
             $event_id = $row['event_id'];
             $event_name = $row['event_name'];
             $event_date = $row['event_date'];
+            $event_location = $row['event_location'];
+            $event_price = $row['event_price'];
 
             echo '    <tr>';
             echo '        <td>' . $event_name . '</td>';
             echo '        <td>' . $event_date . '</td>';
+            echo '        <td>' . $event_location . '</td>';
+            echo '        <td>' . $event_price . '</td>';
             echo '        <td>';
             echo '            <form action="eventupdateasadmin.php" method="GET">';
-            echo '                <input type="hidden" name="id" value="' . $event_id . '">';
+            echo '                <input type="hidden" name="event_id" value="' . $event_id . '">';
             echo '                <button type="submit">Change</button>';
             echo '            </form>';
             echo '            <form action="eventedeleteasadmin.php" method="GET">';
-            echo '                <input type="hidden" name="id" value="' . $event_id . '">';
+            echo '                <input type="hidden" name="event_id" value="' . $event_id . '">';
             echo '                <button type="submit">Delete</button>';
             echo '            </form>';
             echo '        </td>';
@@ -69,7 +75,7 @@
         }
 
         echo '</table>';
-        $_SESSION['event_id'] = $event_id;
+        
 
         $connection->close();
     } else {

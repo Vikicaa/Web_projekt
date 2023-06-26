@@ -52,7 +52,7 @@ include 'adminheader.php';
 	} else {
 		echo "<div class='events'>There are no events.</div>";
 	}
-	$_SESSION['event_id'] = $event_id;
+	
 	// Adatbázis kapcsolat bezárása
 	$connection->close();
 	?>

@@ -13,6 +13,8 @@ if (isset($_GET['event_id'])) {
 
     if ($result) {
         echo "Event deleted successfully.";
+        header('Location: events.php');
+    exit();
     } else {
         echo "Error deleting event: " . $connection->error;
     }

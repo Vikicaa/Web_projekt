@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if (isset($_GET["event_id"])) {
+    $event_id = $_GET["event_id"];
+    $_SESSION["event_id"] = $event_id;
+}
 // Az adatbázis kapcsolódás konfigurációja
 include ("db_config.php");
 
@@ -14,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_event"]) && iss
 
     if ($connection->query($sql) === TRUE) {
         echo "The event is deleted.";
+        header('Location: userevents.php');
     } else {
         echo "Something went wrong while deleting the event: " . $connection->error;
     }
@@ -36,9 +42,10 @@ $connection->close();
 
 </head>
 <body>
+    
 
 <form method="POST" action="" class="container">
-    <h2>Profile Delete</h2>
+    <h2>Event Delete</h2>
     <p>With this option your profile is going to deleted and can't restore it!</p>
         <label for="delete_event">Delete confirmation:</label>
         <input type="checkbox" id="delete_event" name="delete_event" required><br>

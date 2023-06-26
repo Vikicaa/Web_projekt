@@ -47,7 +47,12 @@ else{
             <button type="button" onclick="parent.location='changeevent2.php'">Change Event</button>
             <button type="button" onclick="parent.location='deleteevent2.php'">Delete Event</button>
         </div>
+        <div class="buttons">
+            <button type="button" onclick="parent.location='invitesend.php'">Send Invite</button>
+            <button type="button" onclick="parent.location='invitelist.php'">Invited List</button>
+        </div>
     </div>
+    
 </main>
 </div>
 

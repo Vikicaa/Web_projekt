@@ -142,17 +142,6 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `user_password`, `user_email`, `user_phone`, `user_comment`) VALUES
-(1, 'asd123', '$2y$10$hokikCgJwcq2Ak8ctj8bcu/2mTBz/tRqv9DrXRvXMVaQpI1NtOucm', 'asd@asd.com', 2147483647, ''),
-(2, 'asd123', '$2y$10$JG0fYGOzV3tzUhQLe3GWZOdiVF/7ao4kNRGoLxsEiRf73C5fkqa0y', 'asd@asd.com', 2147483647, ''),
-(3, 'asd123', '$2y$10$ZhSItvXAznbWnSd0IN.s.ejD9aSOKmxoqm3hedT.YLlF84QFimav6', 'asd@asd.com', 2147483647, ''),
-(4, 'asd123', '$2y$10$J1MVDYHBFMeRkuLvXonlxOE20Nr4K6/Bp9x3MMmbFbM6N5uhNupN6', 'asd@asd.com', 2147483647, ''),
-(5, 'asd123', '$2y$10$VvVSbWqVVZiuW5Ygax9GcOLY1g6sCyJaawXCEuj8dzTQ/pnVsrAUq', 'asd@asd.com', 2147483647, ''),
-(6, 'asd123', '$2y$10$.EgkfjsVqXkZfxi/8ZG07eIEQUDJge8Z09i3rQzQXcAorYu40DfYm', 'asd@asd.com', 2147483647, ''),
-(7, 'asd123', '$2y$10$MpzlSsBWM3gTK6GRw1QyUOl6NuKzm4QDRyYuccgjWHPBqjgvt3ICu', 'asd@asd.com', 2147483647, ''),
-(8, 'asd123', '$2y$10$m6TvI0nmrNZ.N7DF.TZK8u3meKNaBSBdZqkrzirEt4gyB4SkDDfVi', 'asd@ssss.com', 2147483647, ''),
-(9, 'asd123', '$2y$10$3NrDBHNLb5Xc8/l0H7Gi4OTs5kNa4fz9ddE9QryImBzIYjON5LTxa', 'qweqwe@sd.com', 2147483647, ''),
-(10, 'mark', '$2y$10$qrMzg8fPK7RSrNr.rE3WYe8AMnc2fCiTFPr1wGtBqTRz0KhqE2Q9a', 'xcvb@gmail.com', 2147483647, '');
 
 --
 -- Indexes for dumped tables
@@ -219,10 +208,13 @@ ALTER TABLE `users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 ALTER TABLE `events`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `gift`
   MODIFY `gift_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+ALTER TABLE `invited`
+  MODIFY `invited_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
@@ -232,29 +224,29 @@ ALTER TABLE `gift`
 -- Constraints for table `comment`
 --
 ALTER TABLE `comment`
-  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`),
-  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `events`
 --
 ALTER TABLE `events`
-  ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `guests`
 --
 ALTER TABLE `guests`
-  ADD CONSTRAINT `guests_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`),
-  ADD CONSTRAINT `guests_ibfk_2` FOREIGN KEY (`gift_id`) REFERENCES `gift` (`gift_id`),
-  ADD CONSTRAINT `guests_ibfk_3` FOREIGN KEY (`invited_token`) REFERENCES `invited` (`invited_token`);
+  ADD CONSTRAINT `guests_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `guests_ibfk_2` FOREIGN KEY (`gift_id`) REFERENCES `gift` (`gift_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `guests_ibfk_3` FOREIGN KEY (`invited_token`) REFERENCES `invited` (`invited_token`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `invited`
 --
 ALTER TABLE `invited`
-  ADD CONSTRAINT `invited_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`),
-  ADD CONSTRAINT `invited_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `invited_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `invited_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
