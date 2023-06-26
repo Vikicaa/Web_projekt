@@ -111,7 +111,9 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
-
+button:hover {
+    color: #ff0000;
+  }
 .social {
     margin-top: 30px;
     display: flex;

@@ -55,7 +55,7 @@ else {
 	<script src="JS\script.js"></script>
   <style>
     form{
-    height: 900px;
+    height: 910px;
     }
     .error {
     font-family: 'Poppins',sans-serif;

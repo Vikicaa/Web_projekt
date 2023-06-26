@@ -12,12 +12,13 @@
 
 </head>
 <body>
-<div class="background">
-        <div class="shape"></div>
-		<div class="shape"></div>
-        <div class="shape"></div>
-    </div>
+
 <main >
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
 	<div class="eventdiv">
             <h1>Events Managament</h1>
             <h2>Events List</h2>
@@ -39,7 +40,7 @@
 		while ($row = $result->fetch_assoc()) {
 			$event_id=$row['event_id'];
 			echo "<a href='changeevent.php?event_id=" . $event_id . "'>" . $row["event_name"] . "</a>";
-    		echo "<div class='events'>" . "Date: " . $row["event_date"] . " - Location: " . $row["event_location"] . " - Price: " . $row["event_price"] . "</div>";
+    		echo "<div class='events'>" . "Date: " . $row["event_date"] . " - Location: " . $row["event_location"] . " - Price: " . $row["event_price"] . " din</div>";
 
 			$_SESSION['event_id'] = $event_id;
 		}
@@ -52,8 +53,6 @@
 	?>
 
 </div>
-</main>
-
-	
+</main>	
 </body>
 </html>

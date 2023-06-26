@@ -226,6 +226,9 @@
     display: block;
     margin: 0 auto;
   }
+  .button:hover {
+    color: #ff0000;
+  }
   .buttonhead{
     width: 20%;
     background-color: #ffffffa8;
@@ -238,6 +241,9 @@
     border-radius: 10px;
     display: block;
     margin: 0 auto;
+  }
+  .buttonhead:hover {
+    color: #ff0000;
   }
   table {
     width: 100%;
@@ -265,4 +271,20 @@
 
   form {
     display: inline;
+  }
+  a {
+    font-family: 'Poppins',sans-serif;
+    width: 300px;
+    background-color: #ffffffa8;
+    text-decoration: none;
+    color: #000;
+    padding: 15px 0;
+    font-size: 20px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  a:hover {
+    color: #ff0000;
   }
