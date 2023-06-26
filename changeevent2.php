@@ -38,8 +38,11 @@
 	if ($result->num_rows > 0) {
 		while ($row = $result->fetch_assoc()) {
 			$event_id=$row['event_id'];
-			echo "<a href='changeevent.php'>" . $row["event_name"] . "</a>";
-			echo "<div class='events'>" . "Date: " . $row["event_date"] . " - Location: " . $row["event_location"] . " - Price: " . $row["event_price"] . "</div>";
+			echo $event_id;
+			echo "<a href='changeevent.php?event_id=" . $event_id . "'>" . $row["event_name"] . "</a>";
+    		echo "<div class='events'>" . "Date: " . $row["event_date"] . " - Location: " . $row["event_location"] . " - Price: " . $row["event_price"] . "</div>";
+
+			$_SESSION['event_id'] = $event_id;
 		}
 	} else {
 		echo "<div class='events'>There are no events.</div>";

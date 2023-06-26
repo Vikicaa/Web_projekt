@@ -5,26 +5,22 @@ session_start();
 include("db_config.php");
 
 global $connection;
+$event_id='';
+$event_id = $_GET['event_id'];
 
-// Az esemény azonosítójának ellenőrzése és SESSION-be helyezése
-if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["event_id"])) {
-    $event_id = $_GET["event_id"];
-    $_SESSION["event_id"] = $event_id;
-}
 
 // Esemény módosítása
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION["event_id"])) {
-    $event_id = $_SESSION["event_id"];
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($event_id)) {
     $event_name = $_POST["event_name"];
     $event_date = $_POST["event_date"];
     $event_location = $_POST["event_location"];
     $event_price = $_POST["event_price"];
 
-    echo "event_id: " . $event_id . "<br>";
-echo "event_name: " . $event_name . "<br>";
-echo "event_date: " . $event_date . "<br>";
-echo "event_location: " . $event_location . "<br>";
-echo "event_price: " . $event_price . "<br>";
+   // echo "event_id: " . $event_id . "<br>";
+    echo "event_name: " . $event_name . "<br>";
+    echo "event_date: " . $event_date . "<br>";
+    echo "event_location: " . $event_location . "<br>";
+    echo "event_price: " . $event_price . "<br>";
 
     // Esemény módosítása az adatbázisban
     $sql = "UPDATE events SET event_name='$event_name', event_date='$event_date', event_location='$event_location', event_price='$event_price' WHERE event_id='$event_id'";
@@ -34,7 +30,7 @@ echo "event_price: " . $event_price . "<br>";
     if ($result === TRUE) {
         echo "Az esemény sikeresen módosítva lett.";
         $_SESSION["event_id"] = $event_id; // Az event_id visszaállítása a SESSION-ben
-        header('Location: userevents.php');
+        header('Location: changeevent2.php');
         exit(); // Kilépés a script végrehajtásából
     } else {
         echo "Hiba történt az esemény módosítása során: " . $connection->error;
@@ -84,6 +80,8 @@ $connection->close();
 
     <label for="event_price">Event price:</label>
     <input type="number" name="event_price" required><br>
+    
+    <input type="hidden" name="event_id" value="<?php echo $_GET['event_id']; ?>">
 
     <button class="button" type="submit">Change Event Details</button>
     <button class="button" type="button" onclick="openChangeEvent2Site()">Back</button>
@@ -91,4 +89,3 @@ $connection->close();
 
 </body>
 </html>
-
