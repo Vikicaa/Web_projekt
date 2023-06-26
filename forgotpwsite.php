@@ -41,7 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['errors'] = $errors;
         }
     }
-} else {
+    header('Location: login.php');
+} else {   
     unset($_SESSION['errors']);
 }
 $connection->close();
