@@ -99,7 +99,8 @@ $_SESSION['errors'] = $errors;
     <script src="JS\script.js"></script>
     <style>
         form {
-            height: 85%;
+            height: 920px;
+            width: 500px;
         }
         .error {
             font-family: 'Poppins',sans-serif;
