@@ -1,7 +1,8 @@
 <?php
 session_start();
 
-
+$errors = array();
+unset($_SESSION['errors']);
 include("db_config.php");
 
 $event_idforinv = $_SESSION['event_id'];
@@ -24,14 +25,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $insert_guest_query = "INSERT INTO guests (event_id, invited_token, bring_gift,feedback) VALUES ('$event_id', '$invited_token','$bring_gift', '$response')";
         $connection->query($insert_guest_query);
 
-        echo "Guest data recorded successfully.";
+        $errors['general'] = "Your answare is recorded successfully.";
 
     } else {
-        echo "Invalid invitation token.";
+        $errors['general'] = "Invalid invitation token.";
     }
 
     $connection->close();
+} else {
+    unset($_SESSION['errors']);
 }
+// Store the errors in the session
+$_SESSION['errors'] = $errors;
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,6 +50,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
   <script src="JS\script.js"></script>
+  <style>
+
+  .error {
+  font-family: 'Poppins',sans-serif;
+  color: red;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
+  font-weight: bold;
+}
+</style>
 </head>
 
 <body>
@@ -55,13 +71,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="text" name="invited_email" required><br>
 
     <h2>Answer to the invitation:</h2>
+    <div class="response">
     <input type="radio" name="response" value="1"> Yes<br>
     <input type="radio" name="response" value="2"> No<br>
     <input type="radio" name="response" value="3"> Maybe<br>
-
+    </div>
     <h2>Gift:</h2>
     <input type="checkbox" name="bring_gift" value="yes"> I want to bring a gift<br>
-
+    <?php if(isset($_SESSION['errors']['general'])) { echo '<p class="error">'.$_SESSION['errors']['general'].'</p>'; } ?><br>
     <input type="submit" value="Save">
 </form>
 

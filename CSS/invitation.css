@@ -1,101 +1,70 @@
-@media screen and (max-height: 600px) {
-    form {
-    height:100%;
-    }
-}
-*,
-*:before,
-*:after {
-    padding: 0;
+/* invitation.css */
+
+/* Reset default styles */
+* {
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
-}
-
-body {
+  }
+  
+  body {
     background-color: #080710;
-}
-
-
-.background .shape {
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    border-radius: 50%;
-}
-
-.shape:first-child {
-    background: linear-gradient(#1845ad, #23a2f6);
-    left: -80px;
-    top: -80px;
-}
-
-.shape:last-child {
-    background: linear-gradient(to right, #ff512f, #f09819);
-    right: -30px;
-    bottom: -80px;
-}
-
-form {
-    height: 800px;
-    width: 400px;
-    background-color: rgba(255, 255, 255, 0.13);
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: rgba(255,255,255,0.13);
     border-radius: 10px;
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
     padding: 50px 35px;
-}
-
-form * {
-    font-family: 'Poppins', sans-serif;
-    color: #ffffff;
-    letter-spacing: 0.5px;
-    outline: none;
-    border: none;
-}
-h1{
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    color: #ffffff;
-    letter-spacing: 0.5px;
-    outline: none;
-    border: none;
-}
-form h3 {
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 42px;
-    text-align: center;
-}
-
-label {
+  }
+  
+  form label {
     display: block;
-    margin-top: 30px;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-input {
-    display: block;
-    height: 50px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  form input[type="text"],
+  form input[type="radio"],
+  form input[type="checkbox"],
+  form input[type="submit"] {
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.07);
+    padding: 10px;
+    border: 1px solid #ccc;
     border-radius: 3px;
-    padding: 0 10px;
-    margin-top: 8px;
+    margin-bottom: 10px;
     font-size: 14px;
-    font-weight: 300;
-}
-
-::placeholder {
-    color: #e5e5e5;
-}
-
-input {
+  }
+  
+  form input[type="radio"],
+  form input[type="checkbox"] {
+    width: auto;
+    margin-right: 5px;
+  }
+  
+  form h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  form .response {
+    margin-bottom: 15px;
+  }
+  
+  form input[type="submit"] {
     margin-top: 50px;
     width: 100%;
     background-color: #ffffffa8;
@@ -105,66 +74,10 @@ input {
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
-}
-button:hover {
+  }
+  
+  form input[type="submit"]:hover {
+    background-color: #00000000;
     color: #ff0000;
-  }
-.social {
-    margin-top: 30px;
-    display: flex;
-}
-
-.social div {
-    background: red;
-    width: 150px;
-    border-radius: 3px;
-    padding: 5px 10px 10px 5px;
-    background-color: rgba(255, 255, 255, 0.27);
-    color: #eaf0fb;
-    text-align: center;
-}
-
-.social div:hover {
-    background-color: rgba(255, 255, 255, 0.47);
-}
-
-.social .fb {
-    margin-left: 25px;
-}
-
-.social i {
-    margin-right: 4px;
-}
-.message{
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.27);
-    font-family: 'Poppins', sans-serif;
-    color: #ffffff;
-    letter-spacing: 0.5px;
-    outline: none;
-    border: none;
-}
-select {
-    padding: 15px;
-    font-size: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.27);
-    width: 100%;
-    margin-top: 25px;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  option {
-    padding: 5px;
-    font-size: 20px;
-    background-color: rgba(255, 255, 255, 0.27);
-    color: #333;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  option:hover {
-    background-color: rgba(255, 255, 255, 0.27);
-    font-family: 'Poppins', sans-serif;
   }
   
