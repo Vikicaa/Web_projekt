@@ -1,28 +1,30 @@
 <?php
-
 session_start();
 
 $errors = array();
 
 include("db_config.php");
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
 require 'phpmailer/src/Exception.php';
 require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 $user_id = $_SESSION['user_id'];
 $user_email = $_SESSION['user_email'];
 
 $sql = "SELECT * FROM invited";
 $result = $connection->query($sql);
 
+$invited_token = 0;
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $invited_token = $row['invited_token'];
+        $invited_token++;
     }
 }
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $event_name = $_POST["event_select"];
     $recipients = $_POST["recipients"]; // Beírt címzett email címek
@@ -35,79 +37,78 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($event_result->num_rows > 0) {
         $event_row = $event_result->fetch_assoc();
         $event_id = $event_row['event_id'];
-        // $user_name = $event_row['user_name'];
 
         $event_details_query = "SELECT event_name, event_date, event_location FROM events WHERE event_id = '$event_id'";
-    $event_details_result = $connection->query($event_details_query);
+        $event_details_result = $connection->query($event_details_query);
 
-    if ($event_details_result->num_rows > 0) {
-        $event_details_row = $event_details_result->fetch_assoc();
-        $event_name = $event_details_row['event_name'];
-        $event_date = $event_details_row['event_date'];
-        $event_location = $event_details_row['event_location'];
+        if ($event_details_result->num_rows > 0) {
+            $event_details_row = $event_details_result->fetch_assoc();
+            $event_date = $event_details_row['event_date'];
+            $event_location = $event_details_row['event_location'];
 
-        $mail = new PHPMailer(true);
+            $mail = new PHPMailer(true);
 
-        try {
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'blackandwhitedeveloperstudio@gmail.com'; //Your gmail
-            $mail->Password = 'qhkzescyxvyxfqho'; // Your gmail app pw
-            $mail->SMTPSecure = 'ssl';
-            $mail->Port = 465;
+            try {
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'blackandwhitedeveloperstudio@gmail.com'; //Your gmail
+                $mail->Password = 'qhkzescyxvyxfqho'; // Your gmail app pw
+                $mail->SMTPSecure = 'ssl';
+                $mail->Port = 465;
 
-            $mail->setFrom('blackandwhitedeveloperstudio@gmail.com'); //your email
-            $mail->isHTML(true);
-            $subject = $_POST["subject"];
-            $message = $_POST["message"];
+                $mail->setFrom('blackandwhitedeveloperstudio@gmail.com'); //your email
+                $mail->isHTML(true);
+                $subject = $_POST["subject"];
+                $message = $_POST["message"];
 
-            foreach ($recipient_emails as $email) {
-                $email = trim($email); // Felesleges szóközök eltávolítása
-                if ($email == $_SESSION['user_email']) {
-                    $errors['user_email'] = "You cannot send emails to yourself.";
-                    continue; // Ugrás a következő címzethez
+                foreach ($recipient_emails as $email) {
+                    $email = trim($email); // Felesleges szóközök eltávolítása
+                    if ($email == $_SESSION['user_email']) {
+                        $errors['user_email'] = "You cannot send emails to yourself.";
+                        continue; // Ugrás a következő címzethez
+                    }
+                    $mail->addAddress($email);
+
+                    // Check if the email already exists for the given event
+                    $existing_email_query = "SELECT * FROM invited WHERE invited_mail = '$email' AND event_id = '$event_id'";
+                    $existing_email_result = $connection->query($existing_email_query);
+
+                    if ($existing_email_result->num_rows > 0) {
+                        $errors['user_email'] = "The email '$email' already exists for this event.";
+                    } else {
+                        $invite_token = md5(uniqid()); // Egyedi token generálása
+
+                        $mail->Subject = $subject;
+                        $mail->Body = "You have been invited to the following event:<br><br>
+                        Event Name: $event_name<br>
+                        Date: $event_date<br>
+                        Location: $event_location<br><br>
+                        Please click on the link below to select your intention to participate:<br>
+                        <a href='http://localhost/Web_projekt/invitation.php?token=$invite_token'>Select Attendance</a><br><br>
+                        Best regards,<br>
+                        User";
+
+                        $mail->send();
+
+                        $errors['user_email'] = "The Invitation Successfully Sent!";
+
+                        $invited_token++;
+
+                        // A küldött meghívó rögzítése az "invited" táblában
+                        $insertQuery = "INSERT INTO invited (invited_token, invited_mail, event_id, user_id) VALUES ('$invited_token', '$email', '$event_id', '$user_id')";
+                        $connection->query($insertQuery);
+                    }
                 }
-                $mail->addAddress($email);
-
-                // Check if the email already exists for the given event
-                $existing_email_query = "SELECT * FROM invited WHERE invited_mail = '$email' AND event_id = '$event_id'";
-                $existing_email_result = $connection->query($existing_email_query);
-
-                if ($existing_email_result->num_rows > 0) {
-                    $errors['user_email'] = "The email '$email' already exists for this event.";
-                } else {
-                    $invite_token = md5(uniqid()); // Egyedi token generálása
-
-                    $mail->Subject = $subject;
-                    $mail->Body = "You have been invited to the following event:<br><br>
-                    Event Name: $event_name<br>
-                    Date: $event_date<br>
-                    Location: $event_location<br><br>
-                    Please click on the link below to select your intention to participate:<br>
-                    <a href='http://localhost/Web_projekt/invitation.php?token=$invite_token'>Select Attendance</a><br><br>
-                    Best regards,<br>
-                    User";
-
-                    $mail->send();
-
-                $errors['user_email'] = "The Invitacion Succesfully Send!";
-                
-                $invited_token++;
-
-                // A küldött meghívó rögzítése az "invited" táblában
-                $insertQuery = "INSERT INTO invited (invited_token, invited_mail, event_id, user_id) VALUES ('$invited_token', '$email', '$event_id', '$user_id')";
-                $connection->query($insertQuery);
+            } catch (Exception $e) {
+                $errors['user_email'] = "Something went wrong while sending email: " . $mail->ErrorInfo . "<br>";
             }
-        } catch (Exception $e) {
-            $errors['user_email'] = "Something went wrong while sending email: " . $mail->ErrorInfo . "<br>";
+        } else {
+            $errors['user_email'] = "Events not found with this username.";
         }
-    } else {
-        $errors['user_email'] = "Events not found with this username.";
     }
 }
 
-}
 // Store the errors in the session
 $_SESSION['errors'] = $errors;
 ?>
