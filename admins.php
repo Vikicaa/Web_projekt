@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Admin User Add</title>
+  <title>Admin Add</title>
   <style>
     label {
       display: inline-block;
@@ -10,7 +10,7 @@
   </style>
 </head>
 <body>
-  <h2>Admin User Add</h2>
+  <h2>Admin Add</h2>
   
   <form method="POST" action="">
     <label for="name">Name:</label>
