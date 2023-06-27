@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         Date: $event_date<br>
                         Location: $event_location<br><br>
                         Please click on the link below to select your intention to participate:<br>
-                        <a href='http://localhost/Web_projekt/invitation.php?token=$invite_token'>Select Attendance</a><br><br>
+                        <a href='http://localhost/Web_Project/Web_projekt/invitation.php?token=$invite_token'>Select Attendance</a><br><br>
                         Best regards,<br>
                         User";
 
