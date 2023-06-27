@@ -102,8 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $pdo = null;
                 $_SESSION['activation_message'] = "Registration successful. Please check your email to activate your account.";
-                header('Location: login.php');
-                exit();
+                //exit();
             }
         } catch (PDOException $e) {
             $errors['general'] = "Something went wrong while registration: " . $e->getMessage();
@@ -176,7 +175,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php if (isset($_SESSION['errors']['general'])) {
     echo '<p class="error">' . $_SESSION['errors']['general'] . '</p>';
 } ?>
-
+ <?php if (!empty($message)) { ?>
+        <p class="error"><?php echo $message; ?></p>
+    <?php } ?>
 
     <button type="submit" name="send" onclick="register()">Create</button>
     <button type="button" onclick="openLoginSite()">Log in</button>
