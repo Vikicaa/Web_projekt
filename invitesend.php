@@ -37,6 +37,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($event_result->num_rows > 0) {
         $event_row = $event_result->fetch_assoc();
         $event_id = $event_row['event_id'];
+        // $user_name = $event_row['user_name'];
+
+        $event_details_query = "SELECT event_name, event_date, event_location FROM events WHERE event_id = '$event_id'";
+    $event_details_result = $connection->query($event_details_query);
+
+    if ($event_details_result->num_rows > 0) {
+        $event_details_row = $event_details_result->fetch_assoc();
+        $event_name = $event_details_row['event_name'];
+        $event_date = $event_details_row['event_date'];
+        $event_location = $event_details_row['event_location'];
+
         $mail = new PHPMailer(true);
 
         try {
@@ -55,6 +66,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             foreach ($recipient_emails as $email) {
                 $email = trim($email); // Felesleges szóközök eltávolítása
+                if ($email == $_SESSION['user_email']) {
+                    $errors['user_email'] = "You cannot send emails to yourself.";
+                    continue; // Ugrás a következő címzethez
+                }
                 $mail->addAddress($email);
 
                 // Check if the email already exists for the given event
@@ -64,25 +79,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($existing_email_result->num_rows > 0) {
                     $errors['user_email'] = "The email '$email' already exists for this event.";
                 } else {
+                    $invite_token = md5(uniqid()); // Egyedi token generálása
 
-                $mail->Subject = $subject;
-                $mail->Body = $message;
+                    $mail->Subject = $subject;
+                    $mail->Body = "You have been invited to the following event:<br><br>
+                    Event Name: $event_name<br>
+                    Date: $event_date<br>
+                    Location: $event_location<br><br>
+                    Please click on the link below to select your intention to participate:<br>
+                    <a href='http://localhost/Web_projekt/invitation.php?token=$invite_token'>Select Attendance</a><br><br>
+                    Best regards,<br>
+                    User";
 
-                $mail->send();
+                    $mail->send();
 
-                $invited_token++;
-
-                // A küldött meghívó rögzítése az "invited" táblában
-                $insertQuery = "INSERT INTO invited (invited_token, invited_mail, event_id, user_id) VALUES ('$invited_token', '$email', '$event_id', '$user_id')";
-                $connection->query($insertQuery);
+                    // A küldött meghívó rögzítése az "invited" táblában
+                    $insertQuery = "INSERT INTO invited (invited_token, invited_mail, event_id, user_id) VALUES ('$invite_token', '$email', '$event_id', '$user_id')";
+                    $connection->query($insertQuery);
+                }
             }
-        }
         } catch (Exception $e) {
             $errors['user_email'] = "Something went wrong while sending email: " . $mail->ErrorInfo . "<br>";
         }
     } else {
         $errors['user_email'] = "Events not found with this username.";
     }
+}
+
 }
 // Store the errors in the session
 $_SESSION['errors'] = $errors;

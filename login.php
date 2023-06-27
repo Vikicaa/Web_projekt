@@ -29,25 +29,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user_id = $row['user_id'];
         $user_name = $row['user_name'];
         $storedPassword = $row['user_password'];
+        $activated = $row['activated'];
 
-        if (password_verify($user_password, $storedPassword)) {
-            $_SESSION['loggedin'] = true;
-            $_SESSION['user_id'] = $user_id;
-            $_SESSION['user_name'] = $user_name;
-            $_SESSION['user_email'] = $user_email;
-            $_SESSION['user_password'] = $user_password;
+        
 
-            header('Location: user_home.php');
-            exit();
+        if ($activated == 1) {
+            if (password_verify($user_password, $storedPassword)) {
+                // Bejelentkezés sikeres
+                $_SESSION['loggedin'] = true;
+                $_SESSION['user_id'] = $user_id;
+                $_SESSION['user_name'] = $user_name;
+                $_SESSION['user_email'] = $user_email;
+                $_SESSION['user_password'] = $user_password;
+    
+                header('Location: user_home.php');
+                exit();
+            } else {
+                $errors['user_password'] = "Incorrect email or password!";
+            }
         } else {
-            $errors['user_password'] = "Incorrect email or password!";
+            $errors['general'] = "Your account is not activated yet. Please check your email for the activation link.";
         }
     } else {
         $errors['user_email'] = "Incorrect email or password!";
     }
 
     $_SESSION['errors'] = $errors;
+    
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -102,6 +112,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } ?><br>
     <?php if (isset($_SESSION['errors']['user_email'])) {
         echo '<p class="error">' . $_SESSION['errors']['user_email'] . '</p>';
+    } ?><br>
+    <?php if (isset($_SESSION['errors']['general'])) {
+        echo '<p class="error">' . $_SESSION['errors']['general'] . '</p>';
     } ?><br>
 
     <button type="submit" onclick="login()">Log in</button>

@@ -18,10 +18,12 @@ session_start();
 include 'adminheader.php';
 
 // PDO adatbázis kapcsolódás
-$host = 'localhost'; // adatbázis szerver elérési útja
-$username = 'bw'; // adatbázis felhasználónév
-$password = '4qEA1dED43ObX44'; // adatbázis jelszó
-$dbname = 'bw'; // adatbázis neve
+// $host = 'localhost'; // adatbázis szerver elérési útja
+// $username = 'bw'; // adatbázis felhasználónév
+// $password = '4qEA1dED43ObX44'; // adatbázis jelszó
+// $dbname = 'bw'; // adatbázis neve
+
+include ('db_config1.php');
 
 $options = array(
     PDO::ATTR_EMULATE_PREPARES => false, // ne emulálja a prepared statementeket

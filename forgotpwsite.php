@@ -89,10 +89,10 @@ $connection->close();
     <label for="email">Your email:</label>
     <input type="email" id="email" name="email" required><br>
     
-    <label for="new_password">Új jelszó:</label>
+    <label for="new_password">New Password:</label>
     <input type="password" id="new_password" name="new_password" required><br>
 
-    <label for="confirm_password">Új jelszó megerősítése:</label>
+    <label for="confirm_password">New Password Confirmation:</label>
     <input type="password" id="confirm_password" name="confirm_password" required><br>
     <?php if(isset($_SESSION['errors']['new_password'])) { echo '<p class="error">'.$_SESSION['errors']['new_password'].'</p>'; } ?><br>
 
