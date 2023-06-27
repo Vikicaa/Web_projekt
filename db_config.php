@@ -1,5 +1,4 @@
 <?php
-
     define("HOST","localhost");
     define("USER","bw");
     define("PASSWORD","4qEA1dED43ObX44");
@@ -14,6 +13,4 @@
     mysqli_query($connection,"SET NAMES utf8") or die (mysqli_error($connection));
     mysqli_query($connection,"SET CHARACTER SET utf8") or die (mysqli_error($connection));
     mysqli_query($connection,"SET COLLATION_CONNECTION='utf8_general_ci'") or die (mysqli_error($connection));
-
-    ?>
-
+?>

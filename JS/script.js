@@ -95,3 +95,77 @@ document.addEventListener('DOMContentLoaded', function() {
     dropdownMenu.classList.toggle('active');
   });
 });
+
+function deleteEvent(eventId) {
+  if (confirm("Are you sure you want to delete this event?")) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "deleteevent1.php?event_id=" + eventId, true);
+      xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+              alert(xhr.responseText);
+              location.reload(); // Az oldal frissítése a változtatások érvényesítéséhez
+          }
+      };
+      xhr.send();
+  }
+}
+function updateEvent(eventId) {
+    // Gyűjtsük össze az esemény módosításához szükséges adatokat
+    var eventName = prompt("Enter event name:");
+    var eventDate = prompt("Enter event date:");
+    var eventLocation = prompt("Enter event location:");
+    var eventPrice = prompt("Enter event price:");
+
+    // Ellenőrizzük, hogy az adatokat megadta-e a felhasználó
+    if (eventName && eventDate && eventLocation && eventPrice) {
+        // Létrehozunk egy XMLHttpRequest objektumot
+        var xhttp = new XMLHttpRequest();
+
+        // Definiáljuk a kérést és a választ kezelő függvényeket
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                // A kérés sikeres volt, a választ megjelenítjük
+                alert(this.responseText);
+                // Frissítjük az oldalt, hogy látható legyen az esemény módosítása
+                location.reload();
+            }
+        };
+
+        // Elküldjük a kérést a `updateEvent.php` fájlnak
+        xhttp.open("POST", "updateevent1.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("event_id=" + eventId + "&event_name=" + eventName + "&event_date=" + eventDate + "&event_location=" + eventLocation + "&event_price=" + eventPrice);
+    } else {
+        alert("Please provide all event details.");
+    }
+}
+function deleteUser(userId) {
+  if (confirm("Are you sure you want to delete this user?")) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (this.readyState === 4 && this.status === 200) {
+              alert(this.responseText);
+              location.reload();
+          }
+      };
+      xhttp.open("POST", "deleteuser1.php", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send("user_id=" + userId);
+  }
+}
+
+function updateUser(userId) {
+  var username = prompt("Enter the new username:");
+  if (username !== null) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (this.readyState === 4 && this.status === 200) {
+              alert(this.responseText);
+              location.reload();
+          }
+      };
+      xhttp.open("POST", "updateuser1.php", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send("user_id=" + userId + "&username=" + username);
+  }
+}

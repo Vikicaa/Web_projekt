@@ -17,50 +17,61 @@ session_start();
 
 include 'adminheader.php';
 
+// PDO adatbázis kapcsolódás
+$host = 'localhost'; // adatbázis szerver elérési útja
+$username = 'bw'; // adatbázis felhasználónév
+$password = '4qEA1dED43ObX44'; // adatbázis jelszó
+$dbname = 'bw'; // adatbázis neve
 
-    if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin']) {
-        // User is logged in as admin
-        echo '<h1>Welcome, admin!</h1>';
-    }
+$options = array(
+    PDO::ATTR_EMULATE_PREPARES => false, // ne emulálja a prepared statementeket
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // hibaüzenetek kivételként kezelése
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC // alapértelmezett fetch mód beállítása asszociatív tömbre
+);
 
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password, $options);
+} catch (PDOException $e) {
+    die("Hiba a kapcsolódás során: " . $e->getMessage());
+}
 
+if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin']) {
+    // User is logged in as admin
+    echo '<h1>Welcome, admin!</h1>';
+}
 ?>
-	<div class="background">
-        <div class="shape"></div>
-		<div class="shape"></div>
-        <div class="shape"></div>
-    </div>
-	<main >
-	<div class="eventdiv">
 
-	<h2>Events List</h2>
-	
-	<?php
-	// Az adatbázis kapcsolódása
-	include ("db_config.php");
-
-	// Események lekérdezése az adatbázisból
-	$sql = "SELECT * FROM events";
-	$result = $connection->query($sql);
-
-	if ($result->num_rows > 0) {
-		while ($row = $result->fetch_assoc()) {
-			$event_id=$row['event_id'];
-			echo "<h2>" . $row["event_name"] . "</h2>";
-			echo "<div class='events'>" . "Date: " . $row["event_date"] . " - Location: " . $row["event_location"] . " - Price: " . $row["event_price"] . "</div>";
-		}
-	} else {
-		echo "<div class='events'>There are no events.</div>";
-	}
-	
-	// Adatbázis kapcsolat bezárása
-	$connection->close();
-	?>
-
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
 </div>
-</main>
 
-	
+<main>
+    <div class="eventdiv">
+        <h2>Events List</h2>
+
+        <?php
+        // Események lekérdezése az adatbázisból
+        $sql = "SELECT * FROM events";
+        $stmt = $pdo->query($sql);
+
+        if ($stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $event_id = $row['event_id'];
+                echo "<h2>" . $row["event_name"] . "</h2>";
+                echo "<div class='events'>" . "Date: " . $row["event_date"] . " - Location: " . $row["event_location"] . " - Price: " . $row["event_price"] . "</div>";
+            }
+        } else {
+            echo "<div class='events'>There are no events.</div>";
+        }
+
+        // Adatbázis kapcsolat bezárása
+        $pdo = null;
+        ?>
+
+    </div>
+</main>
 
 </body>
 </html>

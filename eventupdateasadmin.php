@@ -20,18 +20,22 @@
     <?php
     // This script handles the event update process
     // Connect to the database
-    include("db_config.php");
-
+    include("db_config1.php");
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // Check if the event ID is provided
     if (isset($_GET['event_id'])) {
         $event_id = $_GET['event_id'];
 
         // Retrieve the event details from the database
-        $query = "SELECT * FROM events WHERE event_id = $event_id";
-        $result = $connection->query($query);
+        $query = "SELECT * FROM events WHERE event_id = :event_id";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':event_id', $event_id);
+        $stmt->execute();
 
-        if ($result && $result->num_rows > 0) {
-            $row = $result->fetch_assoc();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row) {
             $event_name = $row['event_name'];
             $event_date = $row['event_date'];
             $event_location = $row['event_location'];
@@ -63,7 +67,7 @@
     }
 
     // Close the database connection
-    $connection->close();
+    $connection = null;
     ?>
 </body>
 </html>

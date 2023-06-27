@@ -4,7 +4,7 @@ session_start();
 
 $errors = array();
 
-include("db_config.php");
+include("db_config1.php");
 
 // Check if the admin is already logged in
 if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] === true) {
@@ -17,47 +17,52 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] === true) 
 if (isset($_POST['admin_name']) && isset($_POST['admin_password'])) {
     $admin_name = $_POST['admin_name'];
     $admin_password = $_POST['admin_password'];
-    global $connection;
 
-    // Check admin credentials in the database
-    $sql = "SELECT * FROM admin WHERE admin_name = '$admin_name' AND admin_password = '$admin_password'";
-    $result = $connection->query($sql);
+    try {
+        $connection = new PDO("mysql:host=$host;dbname=$dbname", $username, $password, $options);
 
-    // Check if there is a match
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $storedPassword = $row['admin_password'];
+        $stmt = $connection->prepare("SELECT * FROM admin WHERE admin_name = :admin_name");
+        $stmt->bindParam(':admin_name', $admin_name);
+        $stmt->execute();
 
-        if ($admin_password === $storedPassword) {
-            $_SESSION['admin_loggedin'] = true;
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Redirect to the admin home page
-            header('Location: admin_home.php');
-            exit();
+        if ($row) {
+            $storedPassword = $row['admin_password'];
+
+            if ($admin_password === $storedPassword) {
+                $_SESSION['admin_loggedin'] = true;
+
+                // Redirect to the admin home page
+                header('Location: admin_home.php');
+                exit();
+            } else {
+                // Incorrect admin credentials
+                $errors['admin_password'] = "Incorrect admin username or password!";
+            }
         } else {
             // Incorrect admin credentials
-            $errors['admin_password'] = "Incorrect admin username or password!";
+            $errors['admin_name'] = "Incorrect admin username or password!";
         }
-    } else {
-        // Incorrect admin credentials
-        $errors['admin_name'] = "Incorrect admin username or password!";
+    } catch (PDOException $e) {
+        die("Error: " . $e->getMessage());
     }
 }
+
 // Store the errors in the session
 $_SESSION['errors'] = $errors;
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Event Organization</title>
-	<link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
-  	<link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
-	<link rel="stylesheet" type="text/css" href="CSS/login.css">
+    <title>Event Organization</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
+    <link rel="stylesheet" type="text/css" href="CSS/login.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-	<script src="JS\script.js"></script>
+    <script src="JS\script.js"></script>
     <style>
     form{
     height: 650px;
@@ -81,17 +86,16 @@ $_SESSION['errors'] = $errors;
                 <h3>Login Here</h3>
                 <label for="admin_name">Username:</label>
                 <input type="text" name="admin_name" placeholder="Admin:"  id="username"required><br>
-
                 <label for="admin_password">Password:</label>
-                <input type="password" name="admin_password" placeholder="Password:" id="password" required><br><br>
+            <input type="password" name="admin_password" placeholder="Password:" id="password" required><br><br>
 
-                <?php if(isset($_SESSION['errors']['admin_name'])) { echo '<p class="error">'.$_SESSION['errors']['admin_name'].'</p>'; } ?><br>
-                <?php if(isset($_SESSION['errors']['admin_password'])) { echo '<p class="error">'.$_SESSION['errors']['admin_password'].'</p>'; } ?><br>
-                
-                <button type="submit" onclick="admin()">Log In</button>
-                <button class="button" type="button" onclick="openLoginSite()">Back</button>
-				
-            </form>
+            <?php if(isset($_SESSION['errors']['admin_name'])) { echo '<p class="error">'.$_SESSION['errors']['admin_name'].'</p>'; } ?><br>
+            <?php if(isset($_SESSION['errors']['admin_password'])) { echo '<p class="error">'.$_SESSION['errors']['admin_password'].'</p>'; } ?><br>
+            
+            <button type="submit" onclick="admin()">Log In</button>
+            <button class="button" type="button" onclick="openLoginSite()">Back</button>
+			
+        </form>
 
-    </body>
+</body>
 </html>

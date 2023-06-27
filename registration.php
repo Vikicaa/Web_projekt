@@ -5,7 +5,7 @@ $errors = array();
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include("db_config.php");
+    include("db_config1.php");
 
     $user_name = $_POST['user_name'];
     $user_password = $_POST['user_password'];
