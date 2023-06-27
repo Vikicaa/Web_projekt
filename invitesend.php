@@ -19,13 +19,13 @@ $sql = "SELECT * FROM invited";
 $result = $connection->query($sql);
 
 $invited_token = 0;
-/*
+
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $invited_token++;
     }
 }
-*/
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $event_name = $_POST["event_select"];
     $recipients = $_POST["recipients"]; // Beírt címzett email címek
