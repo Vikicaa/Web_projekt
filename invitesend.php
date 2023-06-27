@@ -19,12 +19,13 @@ $sql = "SELECT * FROM invited";
 $result = $connection->query($sql);
 
 $invited_token = 0;
+/*
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $invited_token++;
     }
 }
-
+*/
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $event_name = $_POST["event_select"];
     $recipients = $_POST["recipients"]; // Beírt címzett email címek
@@ -37,6 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($event_result->num_rows > 0) {
         $event_row = $event_result->fetch_assoc();
         $event_id = $event_row['event_id'];
+
+        $_SESSION['event_id'] = $event_idforinv;
 
         $event_details_query = "SELECT event_name, event_date, event_location FROM events WHERE event_id = '$event_id'";
         $event_details_result = $connection->query($event_details_query);
@@ -98,6 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         // A küldött meghívó rögzítése az "invited" táblában
                         $insertQuery = "INSERT INTO invited (invited_token, invited_mail, event_id, user_id) VALUES ('$invited_token', '$email', '$event_id', '$user_id')";
                         $connection->query($insertQuery);
+                        
                     }
                 }
             } catch (Exception $e) {
@@ -108,7 +112,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
-
 // Store the errors in the session
 $_SESSION['errors'] = $errors;
 ?>

@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->bindParam(':activation_key', $activationKey);
                 $stmt->execute();
 
-                $activationLink = "http://localhost/Web_projekt/activate.php?activation_key=" . $activationKey;
+                $activationLink = "http://localhost/Web_Project/Web_projekt/activate.php?activation_key=" . $activationKey;
 
                 // E-mail küldése
                 $mail = new PHPMailer(true);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2023 at 07:33 PM
+-- Generation Time: Jun 27, 2023 at 09:30 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -77,7 +77,8 @@ CREATE TABLE `events` (
 
 INSERT INTO `events` (`event_id`, `event_name`, `event_date`, `event_location`, `event_price`, `user_id`) VALUES
 (7, 'Szakdolgozat', '2023-06-15', 'Subotica', 2222, 35),
-(8, 'Diplomalas', '2023-07-01', 'Cantavir', 123, 35);
+(8, 'Diplomalas', '2023-07-01', 'Cantavir', 123, 35),
+(9, 'Stat vizsga', '2023-06-30', 'Szabadkan a VTS-n', 480, 37);
 
 -- --------------------------------------------------------
 
@@ -102,7 +103,8 @@ CREATE TABLE `guests` (
   `event_id` int(11) DEFAULT NULL,
   `gift_id` int(11) DEFAULT NULL,
   `invited_token` int(11) DEFAULT NULL,
-  `feedback` tinyint(4) NOT NULL
+  `bring_gift` tinyint(1) NOT NULL DEFAULT 0,
+  `feedback` tinyint(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -123,6 +125,7 @@ CREATE TABLE `invited` (
 --
 
 INSERT INTO `invited` (`invited_token`, `invited_mail`, `user_id`, `event_id`) VALUES
+(1, 'viktor20010105@gmail.com', 37, 9),
 (11, 'hkmark2002@gmail.com', 35, 7),
 (5591, 'hkmark2002@gmail.com', 35, 8);
 
@@ -147,7 +150,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_password`, `user_email`, `user_phone`, `activation_key`, `activated`) VALUES
-(35, 'mark', '$2y$10$o5QqTFm5x5JQV.q3Ion/7eUzNHMtrdVyyJmA9zy1IPeSeOUI5gKp6', 'markhorvathkavai@gmail.com', 637596344, '0lzK2xV3cC8DwqzhDLaQcCKJPFewhu0C', 1);
+(35, 'mark', '$2y$10$o5QqTFm5x5JQV.q3Ion/7eUzNHMtrdVyyJmA9zy1IPeSeOUI5gKp6', 'markhorvathkavai@gmail.com', 637596344, '0lzK2xV3cC8DwqzhDLaQcCKJPFewhu0C', 1),
+(37, 'Vikica', '$2y$10$xP7Z0eGECs93XxEagVCIPeWsgoBYME1e/ysfuHyTrZxKEbfeZxhxC', 'viktor2xx1@gmail.com', 638821856, 'ivL6F7fUL6VOH5zloAyViuSHRVLqYf8f', 1);
 
 --
 -- Indexes for dumped tables
@@ -211,7 +215,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `gift`
@@ -223,7 +227,7 @@ ALTER TABLE `gift`
 -- AUTO_INCREMENT for table `guests`
 --
 ALTER TABLE `guests`
-  MODIFY `guest_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `guest_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `invited`
@@ -235,7 +239,7 @@ ALTER TABLE `invited`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Constraints for dumped tables
