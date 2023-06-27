@@ -26,6 +26,7 @@
     <input type="text" id="phone" name="phone" required><br><br>
     
     <input type="submit" value="Add">
+    <button class="button" type="button" onclick="parent.location='admin_home.php'">Back</button>
   </form>
 
   <?php

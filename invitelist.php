@@ -14,10 +14,10 @@ require 'phpmailer/src/SMTP.php';
 $user_id = $_SESSION["user_id"];
 
 // Meghívottak és események lekérdezése az adatbázisból az esemény azonosítója alapján
-$sql = "SELECT invited.invited_token, invited.invited_mail, guest.response, events.event_name
+$sql = "SELECT invited.invited_token, invited.invited_mail, guests.feedback, events.event_name
         FROM invited
         INNER JOIN events ON invited.event_id = events.event_id
-        LEFT JOIN guest ON invited.invited_token = guest.invited_token
+        LEFT JOIN guests ON invited.invited_token = guests.invited_token
         WHERE invited.user_id = '$user_id'";
 $result = $connection->query($sql);
 
@@ -108,7 +108,7 @@ $connection->close();
         <tr>
           <td><?php echo $row["invited_mail"]; ?></td>
           <td><?php echo $row["event_name"]; ?></td>
-          <td><?php echo $row["response"]; ?></td>
+          <td><?php echo $row["feedback"]; ?></td>
           <td>
             <form action="" method="POST">
               <input type="hidden" name="invited_token" value="<?php echo $row["invited_token"]; ?>">
