@@ -7,10 +7,11 @@ session_start();
 	<title>Event Organization</title>
 	<link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
   	<link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
-	<link rel="stylesheet" type="text/css" href="CSS/style.css">
+	<link rel="stylesheet" type="text/css" href="CSS/about_us.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="JS\script.js"></script>
 </head>
 <body>
@@ -45,10 +46,8 @@ else{
 		</section>
 	</main>
 
-	<footer>
-		<p>Kapcsolat: info@rendezvenyszervezes.hu</p>
-		<p>Telefon: +36 30 123 4567</p>
-	</footer>
-
 </body>
 </html>
+<?php
+include 'footer.php';
+?>

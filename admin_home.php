@@ -48,29 +48,32 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin']) {
 </div>
 
 <main>
-    <div class="eventdiv">
-        <h2>Events List</h2>
+<div class="eventdiv">
 
-        <?php
-        // Események lekérdezése az adatbázisból
-        $sql = "SELECT * FROM events";
-        $stmt = $pdo->query($sql);
+	
+<?php
+// Az adatbázis kapcsolódása
+include ("db_config.php");
 
-        if ($stmt->rowCount() > 0) {
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $event_id = $row['event_id'];
-                echo "<h2>" . $row["event_name"] . "</h2>";
-                echo "<div class='events'>" . "Date: " . $row["event_date"] . " - Location: " . $row["event_location"] . " - Price: " . $row["event_price"] . "</div>";
-            }
-        } else {
-            echo "<div class='events'>There are no events.</div>";
-        }
+// Események lekérdezése az adatbázisból
+$sql = "SELECT * FROM events";
+$result = $connection->query($sql);
 
-        // Adatbázis kapcsolat bezárása
-        $pdo = null;
-        ?>
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $event_id=$row['event_id'];
+        echo "<div class='events'><h2>" . $row["event_name"] . "</h2>";
+        echo "" . "Date: " . $row["event_date"] . " <br> Location: " . $row["event_location"] . " <br> Price: " . $row["event_price"] . " din</div>";
+    }
+} else {
+    echo "<div class='events'>There are no events.</div>";
+}
+$_SESSION['event_id'] = $event_id;
+// Adatbázis kapcsolat bezárása
+$connection->close();
+?>
 
-    </div>
+</div>
 </main>
 
 </body>

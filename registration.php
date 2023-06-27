@@ -29,7 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errors['user_email'] = "This email is already registered!";
             $_SESSION['errors'] = $errors;
         }
-
+        if (strlen($user_phone) > 10) {
+            $errors['general'] = "The phone number cannot exceed 10 digits.";
+            $_SESSION['errors'] = $errors;
+        }
         if (count($errors) === 0) {
             $hashedPassword = password_hash($user_password, PASSWORD_DEFAULT);
             $stmt = $pdo->prepare("INSERT INTO users (user_name, user_password, user_email, user_phone) VALUES (:user_name, :user_password, :user_email, :user_phone)");
@@ -43,13 +46,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
     } catch (PDOException $e) {
-        echo "Something went wrong while registration: " . $e->getMessage();
+        $errors['general'] = "Something went wrong while registration: " . $e->getMessage();
+    }
+    catch (Exception $e) {
+        $errors['general'] = "Something went wrong: " . $e->getMessage();
     }
 } else {
     unset($_SESSION['errors']);
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="JS/script.js"></script>
     <style>
         form {
-            height: 910px;
+            height: 930px;
         }
 
         .error {
@@ -73,6 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             outline: none;
             border: none;
             font-weight: bold;
+            margin-top: -10px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -90,23 +97,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <label for="user_password">Password:</label>
     <input type="password" placeholder="Password:" id="password" name="user_password" required><br>
-    <?php if (isset($_SESSION['errors']['user_password'])) {
-        echo '<p class="error">' . $_SESSION['errors']['user_password'] . '</p>';
-    } ?><br>
-
+ 
     <label for="user_email">Email:</label>
     <input type="email" placeholder="Email:" id="password" name="user_email" required><br>
-    <?php if (isset($_SESSION['errors']['user_email'])) {
-        echo '<p class="error">' . $_SESSION['errors']['user_email'] . '</p>';
-    } ?><br>
-
+  
     <label for="user_phone">Phone:</label>
     <input type="text" placeholder="Phone number:" id="password" name="user_phone" required><br><br>
+    
+    <?php if (isset($_SESSION['errors']['user_password'])) {
+    echo '<p class="error">' . $_SESSION['errors']['user_password'] . '</p>';
+} ?>
+
+<?php if (isset($_SESSION['errors']['user_email'])) {
+    echo '<p class="error">' . $_SESSION['errors']['user_email'] . '</p>';
+} ?>
+
+<?php if (isset($_SESSION['errors']['general'])) {
+    echo '<p class="error">' . $_SESSION['errors']['general'] . '</p>';
+} ?>
+
 
     <button type="submit" onclick="register()">Create</button>
     <button type="button" onclick="openLoginSite()">Log in</button>
 
 </form>
+
+<?php
+if (isset($_SESSION['errors'])) {
+    echo '<div style="text-align: center; margin-top: -20px;">';
+    foreach ($_SESSION['errors'] as $error) {
+        echo '<p class="error">' . $error . '</p>';
+    }
+    echo '</div>';
+}
+unset($_SESSION['errors']);
+?>
 
 </body>
 </html>

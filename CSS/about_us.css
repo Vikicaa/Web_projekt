@@ -1,0 +1,316 @@
+@media screen and (max-width: 600px) {
+    header {
+      position: relative;
+    }
+  
+    .menu-toggle {
+      display: block;
+      cursor: pointer;
+      color: #fff;
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      z-index: 999;
+    }
+  
+    .menu-toggle::after {
+      content: "\2630";
+      font-size: 24px;
+    }
+  
+    .menu-toggle.active::after {
+      content: "\2715";
+    }
+  
+    .menu-links {
+      display: none;
+    }
+  
+    .dropdown-menu.active .menu-links {
+      font-family: 'Poppins',sans-serif;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      outline: none;
+      border: none;
+      display: block;
+      position: absolute;
+      top: 40px;
+      right: 0;
+      border-radius: 10px;
+      background-color: #333;
+      padding: 10px;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 40px rgba(8,7,16,0.6);
+      z-index: 3;
+    }
+  
+    .dropdown-menu .menu-links li {
+      display: block;
+      margin-bottom: 5px;
+    }
+  
+    .dropdown-menu .menu-links li a {
+      color: #fff;
+      text-decoration: none;
+    }
+  
+    .dropdown-menu .menu-links li a:hover {
+      text-decoration: underline;
+    }
+  
+  
+  }
+  
+  
+  @media screen and (min-width: 601px) {
+  
+    .menu-links {
+      display: block !important;
+      
+    }
+  
+    .dropdown-menu {
+      display: none !important;
+    }
+  }
+  
+  
+  /* Alapvető formázás */
+  body {
+    background-color: #080710;
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Fejléc */
+  header {
+    background-color: #080710;
+    color: #fff;
+    padding: 1.5em;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 10px;
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+  }
+  
+  /* Fő tartalom */
+  main {
+    padding: 20px;
+  }
+  
+  section {
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+
+  
+  footer p {
+    margin: 0;
+  }
+  
+  header {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .logo {
+    position: absolute;
+    left: 6%;
+    top: 3%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .logo img {
+    width: 10em; 
+    height: auto;
+    margin-right: 50px; 
+  }
+  
+  @media screen and (max-width: 768px) {
+    .logo {
+      position: absolute;
+      transform: none;
+      text-align: center;
+    }
+    .shape {
+      left: auto !important;
+      top: auto !important;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .shape:nth-child(1) {
+      left: -150px;
+      top: -40px;
+    }
+  
+    .shape:nth-child(2) {
+      right: 75px;
+      bottom: -75px;
+    }
+  
+    .shape:nth-child(3) {
+      left: 300px;
+      top: 50px;
+    }
+  }
+  .background{
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+  }
+  .background .shape{
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+  }
+  .shape {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+  }
+  
+  .shape:nth-child(1) {
+    background: linear-gradient(#1845ad8e, #23a2f66e);
+    left: -300px;
+    top: -80px;
+  }
+  
+  .shape:nth-child(2) {
+    background: linear-gradient(to right, #ff522f73, #f0961967);
+    right: 150px;
+    bottom: -150px;
+  }
+  .shape:nth-child(3) {
+      background: linear-gradient(to left, #070A5273, #D2131273);
+      left: 600px;
+      top: 100px;
+  }
+  .container{
+    display: flex;
+    align-items: center;
+    height: 40vh;
+    background-color: rgba(255,255,255,0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+  }
+  
+  .container h2{
+    text-align: center;
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    background-color: rgba(255,255,255,0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+    margin-right: 10px;
+  }
+
+
+  .container p {
+    margin-left: auto;
+    font-size: 20px;
+  }
+  
+  /* Lábléc */
+  footer {
+    font-family: 'Poppins',sans-serif;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(255,255,255,0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+  }
+  .fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+  }
+  .fa:hover {
+    opacity: 0.7;
+}
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+.fa-instagram {
+  background: #E4405F;
+  color: white;
+}
+.media li {
+  display: inline-block;
+  margin-right: 10px;
+}

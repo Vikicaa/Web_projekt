@@ -2,16 +2,16 @@
     <div class="contact">
         <h3>Elérhetőségek</h3>
         <ul>
-            <li><a href="mailto:info@example.com">info@example.com</a></li>
-            <li><a href="tel:+1234567890">+1234567890</a></li>
+            <li><p >blackandwhitedeveloperstudio@gmail.com</p></li>
+            <li><p >+1234567890</p></li>
         </ul>
     </div>
     <div class="social-media">
         <h3>Közösségi média</h3>
-        <ul>
-            <li><a href="https://www.facebook.com/example">Facebook</a></li>
-            <li><a href="https://twitter.com/example">Twitter</a></li>
-            <li><a href="https://www.instagram.com/example">Instagram</a></li>
+        <ul class="media">
+            <li><a href="#" class="fa fa-facebook"></a></li>
+            <li><a href="#" class="fa fa-twitter"></a></li>
+            <li><a href="#" class="fa fa-instagram"></a></li>
         </ul>
     </div>
     <div class="address">
