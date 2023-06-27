@@ -5,7 +5,6 @@ session_start();
 include("db_config.php");
 
 $event_idforinv = $_SESSION['event_id'];
-echo $event_idforinv;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -22,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response = $_POST["response"];
         $bring_gift = isset($_POST["bring_gift"]) ? 1 : 0;
 
-        $insert_guest_query = "INSERT INTO guests (event_id, gift_id, invited_token, feedback) VALUES ('$event_id', '$bring_gift', '$invited_token', '$response')";
+        $insert_guest_query = "INSERT INTO guests (event_id, invited_token, bring_gift,feedback) VALUES ('$event_id', '$invited_token','$bring_gift', '$response')";
         $connection->query($insert_guest_query);
 
         echo "Guest data recorded successfully.";
@@ -34,7 +33,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $connection->close();
 }
 ?>
+<!DOCTYPE html>
+<html>
 
+<head>
+  <title>List of invited members</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
+  <link rel="stylesheet" type="text/css" href="CSS/invitation.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <script src="JS\script.js"></script>
+</head>
+
+<body>
 
 <form action="" method="POST">
 
@@ -42,9 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="text" name="invited_email" required><br>
 
     <h2>Answer to the invitation:</h2>
-    <input type="radio" name="response" value="yes"> Yes<br>
-    <input type="radio" name="response" value="no"> No<br>
-    <input type="radio" name="response" value="maybe"> Maybe<br>
+    <input type="radio" name="response" value="1"> Yes<br>
+    <input type="radio" name="response" value="2"> No<br>
+    <input type="radio" name="response" value="3"> Maybe<br>
 
     <h2>Gift:</h2>
     <input type="checkbox" name="bring_gift" value="yes"> I want to bring a gift<br>
@@ -52,3 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="submit" value="Save">
 </form>
 
+</body>
+
+</html>

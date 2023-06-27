@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2023 at 09:30 PM
+-- Generation Time: Jun 27, 2023 at 10:38 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -82,7 +82,6 @@ INSERT INTO `events` (`event_id`, `event_name`, `event_date`, `event_location`, 
 
 -- --------------------------------------------------------
 
-
 --
 -- Table structure for table `guests`
 --
@@ -94,6 +93,49 @@ CREATE TABLE `guests` (
   `bring_gift` tinyint(1) NOT NULL DEFAULT 0,
   `feedback` tinyint(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `guests`
+--
+
+INSERT INTO `guests` (`guest_token`, `event_id`, `invited_token`, `bring_gift`, `feedback`) VALUES
+(10, 9, 1, 1, 2),
+(11, 9, 1, 0, 1),
+(12, 9, 1, 0, 1),
+(13, 9, 1, 0, 1),
+(14, 9, 1, 0, 1),
+(15, 9, 1, 0, 1),
+(16, 9, 1, 0, 1),
+(17, 9, 1, 0, 1),
+(18, 9, 1, 0, 1),
+(19, 9, 1, 0, 1),
+(20, 9, 1, 0, 1),
+(21, 9, 1, 0, 1),
+(22, 9, 1, 0, 1),
+(23, 9, 1, 0, 1),
+(24, 9, 1, 0, 1),
+(25, 9, 1, 0, 1),
+(26, 9, 1, 0, 1),
+(27, 9, 1, 0, 1),
+(28, 9, 1, 0, 1),
+(29, 9, 1, 0, 1),
+(30, 9, 1, 0, 1),
+(31, 9, 1, 0, 1),
+(32, 9, 1, 0, 1),
+(33, 9, 1, 0, 1),
+(34, 9, 1, 0, 1),
+(35, 9, 1, 0, 1),
+(36, 9, 1, 0, 1),
+(37, 9, 1, 0, 1),
+(38, 9, 1, 0, 1),
+(39, 9, 1, 0, 1),
+(40, 9, 1, 0, 1),
+(41, 9, 1, 0, 1),
+(42, 9, 1, 0, 1),
+(43, 9, 1, 0, 1),
+(44, 9, 1, 0, 1),
+(45, 9, 1, 0, 1),
+(46, 9, 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -166,7 +208,6 @@ ALTER TABLE `events`
   ADD PRIMARY KEY (`event_id`),
   ADD KEY `user_id` (`user_id`);
 
-
 --
 -- Indexes for table `guests`
 --
@@ -203,7 +244,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `guests`
 --
 ALTER TABLE `guests`
-  MODIFY `guest_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `guest_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `invited`
@@ -216,10 +257,6 @@ ALTER TABLE `invited`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
-
---
--- AUTO_INCREMENT for table `users`
---
 
 --
 -- Constraints for dumped tables
