@@ -82,17 +82,6 @@ INSERT INTO `events` (`event_id`, `event_name`, `event_date`, `event_location`, 
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `gift`
---
-
-CREATE TABLE `gift` (
-  `gift_id` int(11) NOT NULL,
-  `gift_name` varchar(255) NOT NULL,
-  `purchased` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `guests`
@@ -101,7 +90,6 @@ CREATE TABLE `gift` (
 CREATE TABLE `guests` (
   `guest_token` int(11) NOT NULL,
   `event_id` int(11) DEFAULT NULL,
-  `gift_id` int(11) DEFAULT NULL,
   `invited_token` int(11) DEFAULT NULL,
   `bring_gift` tinyint(1) NOT NULL DEFAULT 0,
   `feedback` tinyint(3) NOT NULL DEFAULT 0
@@ -178,11 +166,6 @@ ALTER TABLE `events`
   ADD PRIMARY KEY (`event_id`),
   ADD KEY `user_id` (`user_id`);
 
---
--- Indexes for table `gift`
---
-ALTER TABLE `gift`
-  ADD PRIMARY KEY (`gift_id`);
 
 --
 -- Indexes for table `guests`
@@ -218,12 +201,6 @@ ALTER TABLE `events`
   MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `gift`
---
-ALTER TABLE `gift`
-  MODIFY `gift_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
 -- AUTO_INCREMENT for table `guests`
 --
 ALTER TABLE `guests`
@@ -244,8 +221,6 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `guest`
-  MODIFY `guest_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Constraints for dumped tables
@@ -269,7 +244,6 @@ ALTER TABLE `events`
 --
 ALTER TABLE `guests`
   ADD CONSTRAINT `guests_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `guests_ibfk_2` FOREIGN KEY (`gift_id`) REFERENCES `gift` (`gift_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `guests_ibfk_3` FOREIGN KEY (`invited_token`) REFERENCES `invited` (`invited_token`) ON DELETE CASCADE;
 
 --
