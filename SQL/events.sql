@@ -173,7 +173,6 @@ ALTER TABLE `events`
 ALTER TABLE `guests`
   ADD PRIMARY KEY (`guest_token`),
   ADD KEY `event_id` (`event_id`),
-  ADD KEY `gift_id` (`gift_id`),
   ADD KEY `invited_token` (`invited_token`);
 
 --

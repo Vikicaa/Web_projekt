@@ -156,9 +156,6 @@ $_SESSION['errors'] = $errors;
     <label for="subject">Subject:</label>
     <input type="text" name="subject" required><br>
 
-    <label for="message">Message:</label>
-    <textarea name="message" rows="6" class="message" required></textarea><br>
-
     <?php
     $sql1 = "SELECT * FROM events WHERE user_id = '$user_id'";
     $result1 = $connection->query($sql1);
