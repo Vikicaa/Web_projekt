@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2023 at 04:58 PM
+-- Generation Time: Jun 27, 2023 at 07:33 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -59,18 +59,6 @@ CREATE TABLE `comment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `connection`
---
-
-CREATE TABLE `connection` (
-  `event_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `guest_token` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `events`
 --
 
@@ -88,7 +76,8 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`event_id`, `event_name`, `event_date`, `event_location`, `event_price`, `user_id`) VALUES
-(7, 'Anyad', '2023-06-22', 'Anyadba', 165, 38);
+(7, 'Szakdolgozat', '2023-06-15', 'Subotica', 2222, 35),
+(8, 'Diplomalas', '2023-07-01', 'Cantavir', 123, 35);
 
 -- --------------------------------------------------------
 
@@ -124,11 +113,18 @@ CREATE TABLE `guests` (
 
 CREATE TABLE `invited` (
   `invited_token` int(11) NOT NULL,
-  `invited_name` varchar(255) NOT NULL,
   `invited_mail` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `invited`
+--
+
+INSERT INTO `invited` (`invited_token`, `invited_mail`, `user_id`, `event_id`) VALUES
+(11, 'hkmark2002@gmail.com', 35, 7),
+(5591, 'hkmark2002@gmail.com', 35, 8);
 
 -- --------------------------------------------------------
 
@@ -151,7 +147,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_password`, `user_email`, `user_phone`, `activation_key`, `activated`) VALUES
-(38, 'Vikica', '$2y$10$crPg62PKDhtvWqfn8WA4PergK2caUtOrq4kdhE/932vLIxKEut4Q6', 'viktor2xx1@gmail.com', 638821856, 'flOMZyViwYCkVVBlrKHRHV2kv4EGlrq7', 1);
+(35, 'mark', '$2y$10$o5QqTFm5x5JQV.q3Ion/7eUzNHMtrdVyyJmA9zy1IPeSeOUI5gKp6', 'markhorvathkavai@gmail.com', 637596344, '0lzK2xV3cC8DwqzhDLaQcCKJPFewhu0C', 1);
 
 --
 -- Indexes for dumped tables
@@ -215,7 +211,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `gift`
@@ -224,16 +220,22 @@ ALTER TABLE `gift`
   MODIFY `gift_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `guests`
+--
+ALTER TABLE `guests`
+  MODIFY `guest_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `invited`
 --
 ALTER TABLE `invited`
-  MODIFY `invited_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `invited_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5592;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Constraints for dumped tables
