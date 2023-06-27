@@ -37,9 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($event_result->num_rows > 0) {
         $event_row = $event_result->fetch_assoc();
+        
         $event_id = $event_row['event_id'];
 
-        $_SESSION['event_id'] = $event_idforinv;
+        $_SESSION['event_id'] = $event_id;
 
         $event_details_query = "SELECT event_name, event_date, event_location FROM events WHERE event_id = '$event_id'";
         $event_details_result = $connection->query($event_details_query);
@@ -63,7 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->setFrom('blackandwhitedeveloperstudio@gmail.com'); //your email
                 $mail->isHTML(true);
                 $subject = $_POST["subject"];
-                $message = $_POST["message"];
 
                 foreach ($recipient_emails as $email) {
                     $email = trim($email); // Felesleges szóközök eltávolítása
