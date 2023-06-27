@@ -13,6 +13,7 @@ require 'phpmailer/src/Exception.php';
 require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
 $user_id = $_SESSION['user_id'];
+$user_email = $_SESSION['user_email'];
 
 $sql = "SELECT * FROM invited";
 $result = $connection->query($sql);
@@ -21,10 +22,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $invited_token = $row['invited_token'];
     }
-} else {
-    echo "<div class='events'>There are no invited.</div>";
 }
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $event_name = $_POST["event_select"];
     $recipients = $_POST["recipients"]; // Beírt címzett email címek
@@ -93,10 +91,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     $mail->send();
 
-                    // A küldött meghívó rögzítése az "invited" táblában
-                    $insertQuery = "INSERT INTO invited (invited_token, invited_mail, event_id, user_id) VALUES ('$invite_token', '$email', '$event_id', '$user_id')";
-                    $connection->query($insertQuery);
-                }
+                $errors['user_email'] = "The Invitacion Succesfully Send!";
+                
+                $invited_token++;
+
+                // A küldött meghívó rögzítése az "invited" táblában
+                $insertQuery = "INSERT INTO invited (invited_token, invited_mail, event_id, user_id) VALUES ('$invited_token', '$email', '$event_id', '$user_id')";
+                $connection->query($insertQuery);
             }
         } catch (Exception $e) {
             $errors['user_email'] = "Something went wrong while sending email: " . $mail->ErrorInfo . "<br>";

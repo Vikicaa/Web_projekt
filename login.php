@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $_SESSION['errors'] = $errors;
-    
+    //unset($_SESSION['errors']);
 }
 
 
@@ -75,7 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <style>
 
         form {
-            height: 800px;
+            height: 850px;
+            width:450px
         }
 
         .error {
