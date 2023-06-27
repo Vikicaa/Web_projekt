@@ -71,6 +71,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_recipient"])) {
     $errors['user_email'] = "Something went wrong while deleting the invited member: " . $connection->error;
   }
 }
+function getFeedbackText($feedback) {
+  if ($feedback == 1) {
+    return "Yes";
+  } elseif ($feedback == 2) {
+    return "No";
+  } elseif ($feedback == 3) {
+    return "Maybe";
+  } else {
+    return "Unknown";
+  }
+}
 
 $connection->close();
 ?>
@@ -99,7 +110,7 @@ $connection->close();
       <tr>
         <th>Invited Members E-mail</th>
         <th>Event name</th>
-        <th>Response</th>
+        <th>Feedback</th>
         <th>Operations</th>
       </tr>
     </thead>
@@ -108,7 +119,7 @@ $connection->close();
         <tr>
           <td><?php echo $row["invited_mail"]; ?></td>
           <td><?php echo $row["event_name"]; ?></td>
-          <td><?php echo $row["feedback"]; ?></td>
+          <td><?php echo getFeedbackText($row["feedback"]); ?></td>
           <td>
             <form action="" method="POST">
               <input type="hidden" name="invited_token" value="<?php echo $row["invited_token"]; ?>">
