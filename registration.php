@@ -9,6 +9,9 @@ require 'phpmailer/src/SMTP.php';
 session_start();
 
 $errors = array();
+
+unset($_SESSION['errors']);
+
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -65,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->bindParam(':activation_key', $activationKey);
                 $stmt->execute();
 
-                $activationLink = "http://localhost/Web_projekt/activate.php?activation_key=" . $activationKey;
+                $activationLink = "https://bw.stud.vts.su.ac.rs/activate.php?activation_key=" . $activationKey;
 
                 // E-mail küldése
                 $mail = new PHPMailer(true);

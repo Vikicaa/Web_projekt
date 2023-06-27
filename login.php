@@ -3,7 +3,7 @@ session_start();
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 $errors = array();
-
+unset($_SESSION['errors']);
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     header('Location: user_home.php');
     exit();
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $_SESSION['errors'] = $errors;
-    
+
 }
 
 
@@ -75,7 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <style>
 
         form {
-            height: 800px;
+            height: 850px;
+            width:450px
         }
 
         .error {

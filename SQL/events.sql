@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2023 at 04:03 PM
+-- Generation Time: Jun 27, 2023 at 04:58 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -83,6 +83,13 @@ CREATE TABLE `events` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`event_id`, `event_name`, `event_date`, `event_location`, `event_price`, `user_id`) VALUES
+(7, 'Anyad', '2023-06-22', 'Anyadba', 165, 38);
+
 -- --------------------------------------------------------
 
 --
@@ -135,7 +142,6 @@ CREATE TABLE `users` (
   `user_password` varchar(255) NOT NULL,
   `user_email` varchar(255) NOT NULL,
   `user_phone` int(15) NOT NULL,
-  `user_comment` varchar(255) NOT NULL,
   `activation_key` varchar(255) NOT NULL,
   `activated` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -144,8 +150,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `user_password`, `user_email`, `user_phone`, `user_comment`, `activation_key`, `activated`) VALUES
-(34, 'mark', '$2y$10$2sKlbPmPkLoGppgv/Us.ueeydFm5Io2MOLt74X9K5LMaakFsCx1tK', 'markhorvathkavai@gmail.com', 637596344, '', 'QnQ2O20GgkUSnIgGRzA8rSF74227NQjP', 0);
+INSERT INTO `users` (`user_id`, `user_name`, `user_password`, `user_email`, `user_phone`, `activation_key`, `activated`) VALUES
+(38, 'Vikica', '$2y$10$crPg62PKDhtvWqfn8WA4PergK2caUtOrq4kdhE/932vLIxKEut4Q6', 'viktor2xx1@gmail.com', 638821856, 'flOMZyViwYCkVVBlrKHRHV2kv4EGlrq7', 1);
 
 --
 -- Indexes for dumped tables
@@ -209,7 +215,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `gift`
@@ -227,7 +233,7 @@ ALTER TABLE `invited`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- Constraints for dumped tables
