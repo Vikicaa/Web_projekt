@@ -9,6 +9,7 @@
       <li><a href="admin_home.php">Home Page</a></li>
       <li><a href="events.php">Events</a></li>
       <li><a href="users.php">Users</a></li>
+      <li><a href="admins.php">Admins</a></li>
       <li><a href="logout.php">Logout</a></li>
     </ul>
   </nav>
@@ -19,6 +20,7 @@
     <li><a href="admin_home.php">Home Page</a></li>
     <li><a href="events.php">Events</a></li>
     <li><a href="users.php">Users</a></li>
+    <li><a href="admins.php">Admins</a></li>
     <li><a href="logout.php">Logout</a></li>
   </ul>
 </nav>
