@@ -242,6 +242,12 @@ ALTER TABLE `users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `guest`
+  MODIFY `guest_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+--
 -- Constraints for dumped tables
 --
 
