@@ -30,9 +30,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user_name = $row['user_name'];
         $storedPassword = $row['user_password'];
         $activated = $row['activated'];
+<<<<<<< HEAD
+=======
+
+        
+>>>>>>> f338386f8f30c6c7818e87b2d4bf55e06d630018
 
         
 
+<<<<<<< HEAD
         if ($activated == 1) {
             if (password_verify($user_password, $storedPassword)) {
                 // Bejelentkezés sikeres
@@ -49,6 +55,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         } else {
             $errors['general'] = "Your account is not activated yet. Please check your email for the activation link.";
+=======
+            header('Location: user_home.php');
+            exit();
+        } elseif ($activated == 0) {
+            $errors['general'] = "Your account is not activated yet. Please check your email to activate your account.";
+        }else {
+            $errors['user_password'] = "Incorrect email or password!";
+>>>>>>> f338386f8f30c6c7818e87b2d4bf55e06d630018
         }
     } else {
         $errors['user_email'] = "Incorrect email or password!";
@@ -57,8 +71,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['errors'] = $errors;
     
 }
+<<<<<<< HEAD
 // echo $activated;
 //     echo $user_name;
+=======
+echo $activated;
+    echo $user_name;
+>>>>>>> f338386f8f30c6c7818e87b2d4bf55e06d630018
 
 ?>
 <!DOCTYPE html>
