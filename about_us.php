@@ -42,7 +42,8 @@ else{
 
 		<section class="container">
 			<h2>About Us</h2>
-			<p>We are an event organization company with a lot of experience. Our wide range of services includes the organization of conferences, corporate events, weddings and other celebrations. </p>
+			<p>We are an event organization company with a lot of experience. Our wide range of services includes the organization of conferences, corporate events, weddings and other celebrations.
+			You can invite your friends and acquaintances to spend the event you create with you, who can let you know if they can come and even choose a gift from the warehouse to spice up your event. </p>
 		</section>
 	</main>
 

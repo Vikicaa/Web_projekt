@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2023 at 05:59 PM
+-- Generation Time: Jun 27, 2023 at 04:03 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -134,14 +134,18 @@ CREATE TABLE `users` (
   `user_name` varchar(255) NOT NULL,
   `user_password` varchar(255) NOT NULL,
   `user_email` varchar(255) NOT NULL,
-  `user_phone` int(11) NOT NULL,
-  `user_comment` varchar(255) NOT NULL
+  `user_phone` int(15) NOT NULL,
+  `user_comment` varchar(255) NOT NULL,
+  `activation_key` varchar(255) NOT NULL,
+  `activated` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `users`
 --
 
+INSERT INTO `users` (`user_id`, `user_name`, `user_password`, `user_email`, `user_phone`, `user_comment`, `activation_key`, `activated`) VALUES
+(34, 'mark', '$2y$10$2sKlbPmPkLoGppgv/Us.ueeydFm5Io2MOLt74X9K5LMaakFsCx1tK', 'markhorvathkavai@gmail.com', 637596344, '', 'QnQ2O20GgkUSnIgGRzA8rSF74227NQjP', 0);
 
 --
 -- Indexes for dumped tables
@@ -202,19 +206,28 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT for table `events`
 --
-ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
 ALTER TABLE `events`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
+--
+-- AUTO_INCREMENT for table `gift`
+--
 ALTER TABLE `gift`
   MODIFY `gift_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
+--
+-- AUTO_INCREMENT for table `invited`
+--
 ALTER TABLE `invited`
-  MODIFY `invited_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `invited_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Constraints for dumped tables

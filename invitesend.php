@@ -55,6 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             foreach ($recipient_emails as $email) {
                 $email = trim($email); // Felesleges szóközök eltávolítása
+                if ($email == $_SESSION['email']) {
+                    $errors['user_email'] = "You cannot send emails to yourself.";
+                    continue; // Ugrás a következő címzethez
+                }
                 $mail->addAddress($email);
 
                 // Check if the email already exists for the given event

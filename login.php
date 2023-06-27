@@ -29,6 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user_id = $row['user_id'];
         $user_name = $row['user_name'];
         $storedPassword = $row['user_password'];
+        $activated = $row['activated'];
+
+        
 
         if (password_verify($user_password, $storedPassword)) {
             $_SESSION['loggedin'] = true;
@@ -39,7 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             header('Location: user_home.php');
             exit();
-        } else {
+        } elseif ($activated == 0) {
+            $errors['general'] = "Your account is not activated yet. Please check your email to activate your account.";
+        }else {
             $errors['user_password'] = "Incorrect email or password!";
         }
     } else {
@@ -47,7 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $_SESSION['errors'] = $errors;
+    
 }
+echo $activated;
+    echo $user_name;
 
 ?>
 <!DOCTYPE html>
@@ -102,6 +110,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } ?><br>
     <?php if (isset($_SESSION['errors']['user_email'])) {
         echo '<p class="error">' . $_SESSION['errors']['user_email'] . '</p>';
+    } ?><br>
+    <?php if (isset($_SESSION['errors']['general'])) {
+        echo '<p class="error">' . $_SESSION['errors']['general'] . '</p>';
     } ?><br>
 
     <button type="submit" onclick="login()">Log in</button>
