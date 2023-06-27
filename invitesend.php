@@ -127,7 +127,7 @@ $_SESSION['errors'] = $errors;
     <script src="JS\script.js"></script>
     <style>
         form {
-            height: 920px;
+            height: 850px;
             width: 500px;
         }
         .error {
