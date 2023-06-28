@@ -1,9 +1,9 @@
 <?php
 
 $host = 'localhost'; // adatbázis szerver elérési útja
-$username = 'bw'; // adatbázis felhasználónév
-$password = '4qEA1dED43ObX44'; // adatbázis jelszó
-$dbname = 'bw'; // adatbázis neve
+$username = 'root'; // adatbázis felhasználónév
+$password = ''; // adatbázis jelszó
+$dbname = 'events'; // adatbázis neve
 
 // További beállítások (opcionális)
 $options = array(

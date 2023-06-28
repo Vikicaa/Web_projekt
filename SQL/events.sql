@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2023 at 11:43 PM
+-- Generation Time: Jun 28, 2023 at 02:37 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -77,10 +77,9 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`event_id`, `event_name`, `event_date`, `event_location`, `event_price`, `user_id`) VALUES
-(7, 'Szakdolgozat', '2023-06-15', 'Subotica', 2222, 35),
+(7, 'SzakDolgozat', '2024-06-15', 'Szabadka', 3000, 35),
 (8, 'Diplomalas', '2023-07-01', 'Cantavir', 123, 35),
-(9, 'Stat vizsga', '2023-06-30', 'Szabadkan a VTS-n', 480, 37),
-(10, 'majom', '2023-06-14', 'Cantavir', 4, 35);
+(9, 'Stat vizsga', '2023-06-30', 'Szabadkan a VTS-n', 480, 37);
 
 -- --------------------------------------------------------
 
@@ -95,13 +94,6 @@ CREATE TABLE `guests` (
   `bring_gift` tinyint(1) NOT NULL DEFAULT 0,
   `feedback` tinyint(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Dumping data for table `guests`
---
-
-INSERT INTO `guests` (`guest_token`, `event_id`, `invited_token`, `bring_gift`, `feedback`) VALUES
-(6, 10, 4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -122,7 +114,6 @@ CREATE TABLE `invited` (
 
 INSERT INTO `invited` (`invited_token`, `invited_mail`, `user_id`, `event_id`) VALUES
 (1, 'viktor20010105@gmail.com', 37, 9),
-(4, 'hkmark2002@gmail.com', 35, 10),
 (11, 'hkmark2002@gmail.com', 35, 7),
 (5591, 'hkmark2002@gmail.com', 35, 8);
 
@@ -205,13 +196,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `guests`

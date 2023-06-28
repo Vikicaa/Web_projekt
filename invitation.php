@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $connection->query($insert_guest_query);
 
         $errors['general'] = "Your answare is recorded successfully.";
-
+        header('Location: user_home.php');
     } else {
         $errors['general'] = "Invalid invitation token.";
     }

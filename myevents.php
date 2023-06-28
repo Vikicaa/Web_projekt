@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,9 +25,9 @@
 <button class="button" type="button" onclick="parent.location='userevents.php'">Back</button>
 
 <?php
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-if (isset($_SESSION['user_name'])) {
-    $currentUserName = $_SESSION['user_name'];
+include("db_config1.php");
+if (isset($_SESSION['user_id'])) {
+    $currentUserId = $_SESSION['user_id'];
     
     echo '<h2>List of Events</h2>';
     // Adatbázisból lekérdezi az események adatait és megjeleníti őket egy táblázatban
@@ -38,17 +41,12 @@ if (isset($_SESSION['user_name'])) {
     echo '        <th>Operations</th>';
     echo '    </tr>';
 
-    // Adatbázisból lekérdezi az események adatait
-    // Ezt az adatbázis struktúrájához és az adott rendszerhez igazítsa
-
-    include("db_config1.php");
-
     try {
         // Adatbázis kapcsolat létrehozása
         $connection = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password, $options);
 
         // Felhasználó eseményeinek lekérdezése az adatbázisból
-        $query = "SELECT * FROM events WHERE user_name = :userName";
+        $query = "SELECT * FROM events WHERE user_id = :userName";
         $statement = $connection->prepare($query);
         $statement->bindParam(":userName", $currentUserId);
         $statement->execute();
@@ -61,14 +59,15 @@ if (isset($_SESSION['user_name'])) {
             $event_location = $event['event_location'];
             $event_price = $event['event_price'];
 
+            $_SESSION['event_id'] = $event_id;
+            
             echo '    <tr>';
             echo '        <td>' . $event_name . '</td>';
             echo '        <td>' . $event_date . '</td>';
             echo '        <td>' . $event_location . '</td>';
             echo '        <td>' . $event_price . '</td>';
             echo '        <td>';
-            echo '            <button onclick="deleteEvent(' . $event_id . ')">Delete</button>';
-            echo '            <button onclick="updateEvent(' . $event_id . ')">Change</button>';
+            echo '            <button onclick="parent.location=\'comments.php\'">Comments</button>';
             echo '        </td>';
             echo '    </tr>';
         }
@@ -86,7 +85,7 @@ if (isset($_SESSION['user_name'])) {
 } else {
     echo '<p>Permission denied. Please log in.</p>';
 }
-}
+
 ?>
 </body>
 </html>
