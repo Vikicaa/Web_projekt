@@ -1,0 +1,7 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: event-platform
+  description: Platform managing all event-related services and sites
+spec:
+  owner: web-team
