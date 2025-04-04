@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: animal-adoption-portal
+  description: A web project for animal adoption built with PHP, JS, and CSS.
+  tags:
+    - php
+    - javascript
+    - css
+    - web
+spec:
+  type: website
+  lifecycle: production
+  owner: web-team
+  system: adoption-platform
